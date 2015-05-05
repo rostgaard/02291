@@ -1,3 +1,39 @@
 \chapter{Validation}
 \section{Use Case Realisation}
 %Show how the system realizes the use cases selected in Sect. 4 using interaction diagrams. Show that each of the scenarios defined by the use cases is executed using the design of the system by providing sequence- or communication diagrams for each scenario. Choose the appropriate type of interaction diagram for a scenario.
+
+
+\begin{figure}
+  \includegraphics[scale=0.65]{\imgdir "Cashier enters toll cash lane"}
+  \caption{Sequence diagram of realizing a cashier entering a toll cash lane}
+  \label{fig:seq_diag:system_charges_customers}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[scale=0.4]{\imgdir "Customer buy toll tag"}
+  \caption{Sequence diagram of the scenario of a customer buying a toll tag on-line}
+  \label{fig:seq_diag:customer_orders_toll_tag_online}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[scale=0.37]{\imgdir "Customer Check-in single ticket"}
+  \caption{Sequence diagram of the scenario where a customer buys a ticket from a cashier}
+  \label{fig:seq_diag:customer_check_in_single_ticket}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[scale=0.37]{\imgdir "Customer check-in toll"}
+  \caption{Sequence diagram of the scenario where a customer checks in using a toll tag}
+  \label{fig:seq_diag:customer_check_in_toll_tag}
+\end{figure}
+
+Enterprise manager changes toll rates
+Enterprise manager generates report
+Toll Station generate report
+
+\begin{figure}
+  \includegraphics[scale=0.65]{\imgdir "System charges customers"}
+  \caption{Sequence diagram of the scenario where system charges customers (monthly)}
+  \label{fig:seq_diag:system_charges_customers}
+\end{figure}
+The propagation of cancel() in figure \ref{fig:seq_diag:system_charges_customers} to station servers is intentionally left out to enhance readability of the diagram.
