@@ -4,6 +4,117 @@
 \section{Domain Analysis}
 %From PD. Keep in mind while writing.
 %Create a glossary explaining the notions and terminologies discovered when analysing the domain of the toll system. Create a class diagram of the domain. Describe the basic workflows / business proceses of the toll system as activity diagrams.
+\subsection{Glossary}
+\subsubsection{Station-related terminology}
+\begin{description}
+
+  \item[Entry:] A point where the Customer enters the Motorway, consists of a selection of Toll Lanes and,Toll Station and Toll Both.
+  \item[Exit:] A point where the Customer leaves the Motorway, consists of a selection of Toll Lanes and a Toll Station.
+  \item[Express Toll Lane:] Toll Lane prepared to work with Toll Tags
+  \item[Motorway:] The road for the Customers consisting of at least one Entry and Exit
+  \item[Normal Toll Lane:] Toll Lane prepared to work with Single Tickets
+  \item[Toll Lane] a path on the Entry on which the Customer (one at the time) can enter the Motorway. It has a Computer.
+  \item[Toll Station:] A place where the Station Manager resides and overseers the Toll Lanes
+  \item[Toll System:] The infrastructure for managing the Motorway, used by Cashiers, Managers and Customers, also called Enterprise.
+
+
+\end{description}
+\subsubsection{Payment \& Ticket terminology}
+\begin{description}
+  \item[Cash] one of the payment methods on the Normal Toll Lane for a Single Ticket, requires a Cashier using a Cash Register. The availability of this method on the Toll Lane is confirmed by the Indicator
+  \item[Check In] Operation of entering the Motorway on the Entry performed by the Customer with use of Single Ticket or Toll Tag. Successful Check In yields the Toll Lane Barrier to open
+  \item[Check Out] Operation of leaving the Motorway on the Exit performed by the Customer with use of Single Ticket or Toll Tag. Successful Check Out yields the Toll Lane Barrier to open
+  \item[Credit card] One of the payment methods on the Normal Toll Lane for a Single Ticket, does not require a Cashier, but is performed through self service with a Credit Card Reader.
+  \item[Single Ticket] One of the payment methods available for Motorway Customers, has a fixed price based on the Vehicle type and the Ticket Validity of 24 hours after being printed
+  \item[Ticket Validity] State of the Single Ticket stating, if it can be used for a successful Check Out operation. Voids after 24 hours of sale or after a Check Out
+  \item[Toll Charge] The price for the single travel performed by the Customer who uses the Toll Tag, its value depends on the Travel Distance and the type of the Vehicle
+  \item[Toll Tag:] A wireless beacon placed in the Vehicle which allows the Customer driving it to use the Express Toll Lanes
+  \item[Travel Distance:] Distance between the chosen Entry and Exit, where the corresponding Check in and Check out were performed by the Customer using the Toll Tag
+\end{description}
+
+\subsubsection{Actors}
+\begin{description}
+
+  \item[Bank:] entity responsible for processing payments for Toll Tags and Credit Card, reached through a dedicated communication channel.
+  \item[Cashier:] - one of the users of the Toll System, he is responsible for either selling Single Tickets with Cash on the Toll Lanes with Cash Register or resolving problems with Ticket Validity at the Exit
+  \item[Customer:] A Vehicle owner, one of the Toll System users
+  \item[Manager] - Toll System user responsible for managing Toll Station (Toll Station Manager) or the whole Toll System (Enterprise Manager). Can generate Reports and change Single Ticket or Toll Tag price
+
+\end{description}
+
+\subsubsection{Hardware components}
+\begin{description}
+
+  \item[Antenna] - Part of the Express Lanes, connects to the Toll Tag to perform a Check In or Check out
+  \item[Barrier] - part of the Toll Lane, stops the Vehicle from passing through it unless a valid Check In or Check Out is performed
+  \item[Cash register] - a device placed in the Normal Tall Lane, operated by Cashier
+  \item[Client] - A Computer used by Managers for registration and generating reports - registration of Managers
+  \item[Computer] - Client for Station, Client and server for Toll System or simple terminal for Toll Lane to be used by the Toll System users.
+  \item[Credit card reader] - a device placed in every Normal Tall Lane, operated by Customer
+  \item[Internet] - a channel for communication between the Toll System, Bank and Customers
+  \item[Printer] - a device placed in every Toll Lane and Stations, used for printing Single Tickets and Reports
+  \item[Server] - connects all computers in Toll Station (Station Server) or Toll System (Enterprise Server). Server is managed by a Client (Station or Enterprise).
+  \item[Single ticket reader] - part of the Normal Toll Lanes at the Exits, checks the Validity of Single Tickets presented by the Customers during the Check Out operation.
+  \item[Toll lane indicator] - indicates, if the Toll Lane allows Cash payment, i. e. if the Cash Register is installed and the Cashier is present
+  \item[Touch screen] - interface for the Computer
+  \item[Vehicle] - car, motorbike or truck operated by the Customer, can have a Toll Tag attached to it
+  \item[Web server] - Toll System’s gate to the Internet
+\end{description}
+\subsubsection{Other}
+\begin{description}
+  \item [Customer Notification] Information sent to all Customers via Internet, initialized by Enterprise Manager
+  \item[Report] Summary of the Toll System performance, generated by the Manager with use of the Client
+  \item[Subscription] Agreement between a toll tag customer and the toll enterprise to enable the toll enterprise to make recurring withdrawals based on toll tag usage.
+\end{description}
+
+\section{Actors}
+Actors and their capabilities.
+\begin{description}
+\item [Cashier:]
+
+\begin{itemize}
+  \item Launch lane
+  \item Sell ticket / check in
+  \item Solve check out problems
+\end{itemize}
+\end{description}
+
+\begin{description}
+\item [Station manager:]
+
+\begin{itemize}
+  \item Generate station reports
+\end{itemize}
+\end{description}
+
+\begin{description}
+\item [Enterprise manager:]
+
+\begin{itemize}
+  \item Generate enterprise reports
+  \item Change toll rates
+  \item Send notifications to customers
+  \item 
+\end{itemize}
+\end{description}
+
+\begin{description}
+\item [Customer:]
+
+\begin{itemize}
+  \item Check-in
+  \item Check-out
+  \item Buy toll tag
+\end{itemize}
+\end{description}
+
+%TODO: <SHORT TEXT>
+%TODO: <ACTIVITY DIAGRAM>
+
+\begin{figure}
+
+\caption{Activity Diagram of the Basic Workflow}
+\end{figure}
 
 \section{Functional Requirements}
 %From PD. Keep in mind while writing.
@@ -18,5 +129,123 @@
 %8. Notes
 %9. Author
 % You may use the usecase.sty for easy formatting.
+\subsection{Identified requirements}
 
-\section{Non-Functional Requirements}
+\begin{usecase}
+\addtitle{Use Case 1}{Purchase single ticket from manned lane} 
+\addfield{Author:}{\martin}
+\addfield{Description:}{Customer buys a single ticket}
+\addfield{Primary Actor:}{Customer}
+\addfield{Notes:}{Payment can be done with cash or credit card}
+
+\additemizedfield{Stakeholders}{
+	\item Customer
+	\item Cashier
+}
+\additemizedfield{Preconditions:}{
+      \item Customer has arrived at toll station from outside the toll system
+      \item Lane is manned by a cashier 
+      \item Barrier is down
+}
+\additemizedfield{Postconditions:}{
+      \item The customer is now on the toll road
+}
+\addscenario{Main Success Scenario:}{
+      \item Looks for cashier lane and drives up to it
+      \item Pays the required amount of money
+      \item Takes ticket and receipt
+      \item Drives through the barrier
+}
+\addscenario{Extensions:}{
+	\item[1.a] Does not have enough money to pay
+		\begin{enumerate}
+		\item[1.] Being guided off and drives away
+		\end{enumerate}
+}
+\end{usecase}
+\begin{usecase}
+\addtitle{Use Case 2}{Purchase single ticket from unmanned lane} 
+\addfield{Author:}{\martin}
+\addfield{Description:}{Customer buys a single ticket with credit card}
+\addfield{Primary Actor:}{Customer}
+\addfield{Notes:}{Payment can only be done only with credit card}
+
+\additemizedfield{Stakeholders}{
+	\item Customer
+}
+\additemizedfield{Postconditions:}{
+      \item The customer is now on the toll road
+}
+\addscenario{Main Success Scenario:}{
+      \item Looks for cashier lane and drives up to it
+      \item Picks vehicle type and is presented with amount to be paid
+      \item Inserts credit card into credit card reader and enters credit card PIN
+      \item Takes ticket and receipt
+      \item Drives through the barrier
+}
+\addscenario{Extensions:}{
+	\item[3.a] Credit card PIN is declined
+		\begin{enumerate}
+		\item[1.] Retries by returning to 2
+		\end{enumerate}
+	\item[3.b] Credit card is declined entirely
+		\begin{enumerate}
+		\item[1.] Being guided off and drives away
+		\end{enumerate}
+}
+\end{usecase}
+
+
+
+The functional requirements describe what the system is supposed to do. Below is a list of such requirements applicable to the toll system:
+\begin{description}
+  \item[RQ1] The system shall be able to enforce toll collection on motorways.
+  \item[RQ2] A toll station shall be placed at every entry and exit of a motorway.
+  \item[RQ3] It shall be possible to check vehicles in and out on toll lanes located at every toll station.
+  \item[RQ4] There shall be two types of toll lanes: express and normal.
+  \item[RQ5] The toll lane type shall be displayed on an indicator.
+  \item[RQ6] Two toll collection methods shall be available: single tickets and toll tags.
+  \item[RQ7] The toll collection on an express lane shall be performed automatically and wirelessly using toll tags.
+  \item[RQ8]The toll collection on a normal lane shall be performed manually by selling single tickets.
+
+  \item[RQ9]It shall be possible to pay for a single ticket using a credit card or cash.
+  \item[RQ10]A single ticket shall be valid for one trip only and for a maximum duration of 24 hours.
+
+  \item[RQ11] It shall be possible to purchase toll tags at every toll station or on the Internet.
+  \item[RQ12] The price for purchasing a toll tag shall be fixed.
+  \item[RQ13] A toll tag shall be bound to one vehicle only.
+  \item[RQ14] A toll tag shall be bound to a bank account.
+  \item[RQ15] All toll fees incurred on a toll tag shall be charged monthly from the bank account it is bound to.
+
+  \item[RQ16] Integration of all devices and tasks responsible for a check in/out shall be performed by a toll lane computer.
+  \item[RQ17] Information from every toll lane computer shall be forwarded to its toll station server and stored there.
+  \item[RQ18] Information from every toll station server shall be forwarded to an enterprise server and stored there.
+
+  \item[RQ19] It shall be possible to generate periodical statistical reports with information about a single toll stations drift.
+  \item[RQ20] The reports shall include information about types of vehicles checked in and frequency of single ticket and toll tag usage.
+  \item[RQ21] It shall be possible to generate reports with same information as above for all toll stations simultaneously.
+
+  \item[RQ22] It shall be possible to change toll rates.
+  \item[RQ23] The toll rates shall depend on the vehicle types.
+  \item[RQ24] Single tickets shall have a fixed price for a trip.
+  \item[RQ25] Toll tags shall have a fixed rate per kilometer.
+  \item[RQ26] It shall be possible to send arbitrary notifications to customers via standard mail or email.
+
+\end{description}
+\subsubsection{Non-Functional Requirements}
+The non-functional requirements describe how the system is supposed to be. Below is a list of such requirements applicable to the toll system:
+
+\begin{description}
+  \item[NRQ1] In order to minimise the queues on the normal lanes without a cashier, the system's user interface for the customers shall be easy to use. A customer arriving at a normal lane and paying with a credit card shall be able to do so without assistance within no more than 1 minute. 
+  \item[NRQ2] The processes of ticket purchase and validation shall take no longer than 1 minute each.
+  \item[NRQ3] It shall be possible to distinguish the lane type from a distance of at least 100 meters.
+  \item[NRQ4] The fault rate of the wireless toll collection (with antennas and toll tags) shall be at most 1 vehicle per day per toll station.
+  \item[NRQ5] Station and enterprise generation shall be fast. It shall take no longer than 30 seconds to generate and display a report.
+\end{description}
+
+
+\begin{figure}
+\includegraphics[scale=0.4]{\imgdir "Domain Model"}
+\caption{Domain model}
+\label{fig:domain_model}
+\end{figure}
