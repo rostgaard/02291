@@ -2,9 +2,9 @@
 %This section contains the design of the system. It is only necessary to create a design realizing the use cases identified in Sect. 4. Explain any non-trivial design decision that you make, and state any assumptions that you make. 2
 \noindent
 The system is distributed in nature, and we have therefore designed our components with this in mind.\\\\
-The most important design decision that we made was that we decided to distributed the toll tag subscriptions to every toll station. This was done to keep toll tag check-in latency low, and because of log lifetime of a subscription.\\
-The alternative of keeping a transaction object -- a trip -- (which completes upon check-out) in the enterprise, could potentially lead to very long answer times. And in case of a failure in the enterprise server will bring down every toll station.\\\\
-Toll tag subscriptions, once created, will be distributed to every station and will be there until explicitly canceled (either by the customer, or by a credit card payment decline). The main motivation for this is that a toll tag subscription, once initially created, will have a lifetime of at least one month.
+The most important design decision that we made was to distribute the toll tag subscriptions to every toll station. This was done to keep toll tag check-in latency low, and because of long lifetime of a subscription.\\
+The alternative of keeping a transaction object -- a trip -- (which completes upon check-out) in the enterprise, could potentially lead to very long answer times. And a case of a failure in the enterprise server would bring down every toll station.\\\\
+Toll tag subscriptions, once created, will be distributed to every station and will be there until explicitly cancelled (either by the customer, or by a credit card payment decline). The main motivation for this is that a toll tag subscription, once initially created, will have a lifetime of at least one month.
 \section{Component Design}
 %Define the components of the system with their ports (i.e., a port is a set of required and provided   interfaces). For each provided interfacze of a port provide the protocol state machine. For hardware components that one would buy off the shelf, like antenna, ticket reader, barrier, . . . , it is sufficient to provide the ports with their protocol state machines without going into the details of their possible implementation.
 
@@ -18,14 +18,14 @@ Toll tag subscriptions, once created, will be distributed to every station and w
 The component architecture is based on three main components and three helpers. 
 The main components are:
 \begin{itemize}
-\item \textbf{Toll Lane} - this subsystem encapsulates Toll Booth component, which heart is the Cash Register. It provides or requires interfaces from all of the hardware located in or around the booth, like Credit Card Reader, Ticket Printer or Antenna. It communicates with the Toll Station Server by bidirectional interface, which allows to exchange information like current price or checked tickets and tags.
-\item \textbf{Toll Station} - this subsystem consists of only two elements - the server, responsible for synchronizing with Enterprise Server and Cash Register, and the client, that is used by Manager to print reports or submitting the forms. The communication between servers provides Station Servers with informations, that are stored locally: current, registered subscriptions and prices, and allows for monthly synchronization of checks and sold tickets. 
+\item \textbf{Toll Lane} - this subsystem encapsulates Toll Booth component, whose heart is the Cash Register. It provides or requires interfaces from all of the hardware located in or around the booth, like Credit Card Reader, Ticket Printer and Antenna. It communicates with the Toll Station Server by bidirectional interface, which allows to exchange information like current toll rates or checked tickets and tags.
+\item \textbf{Toll Station} - this subsystem consists of only two elements - the server, responsible for synchronizing with Enterprise Server and Cash Register, and the client, that is used by a Manager to generate reports or submit the forms. The communication between servers provides Station Servers with information, that are stored locally: current, registered subscriptions and prices, and allows for monthly synchronization of checks and sold tickets. 
 \item \textbf{Enterprise Server} - this component controls the flow of data. It collects the forms submitted by the Website. It provides the data for management client and accepts its request for price changing and notification sending. It is also responsible for calculating and processing the monthly payment for toll tags' owners.
 \end{itemize}
 The helpers are:
 \begin{itemize}
-\item \textbf{Bank} - this component not implemented by our application. It offers interfaces for Credit Card Reader and Enterprise for processing credit card payments. It also provides the system with physical credit card reader devices.
-\item \textbf{Management Client} - it allows Enterprise Managers to change the prices, send notification for customers or generate reports. It communicates with Enterprise Server and Report Generator. 
+\item \textbf{Bank} - this component is not implemented by our application. It offers interfaces for Credit Card Reader and Enterprise for processing credit card payments. It also provides the system with physical credit card reader devices.
+\item \textbf{Management Client} - it allows Enterprise Managers to change the toll rates, send notifications for customers and generate reports. It communicates with Enterprise Server and Report Generator. 
 \item \textbf{Webserver} - this component is hosting the website for customers for ordering and managing their toll tags. It uses Enterprise interfaces to inform about new toll tags requests. 
 \end{itemize}
 
@@ -47,29 +47,29 @@ The detailed class design includes all the interfaces introduced in component di
 The classes has following interactions and contracts:
 \begin{description}
 
-\item[Antenna] - it's a hardware device, that is contacting the Cash Register to inform about toll tag that it registered.
-\item[Bank] - a representation of outer company, that provides interfaces for credit card and monthly payments. 
-\item[Barrier] - it's a hardware device, that provides the interface for Cash Register for opening/closing.
+\item[Antenna] - it is a hardware device, that is contacting the Cash Register to inform about toll tag that it registered.
+\item[Bank] - a representation of external company, that provides interfaces for credit card and monthly payments. 
+\item[Barrier] - it is a hardware device, that provides the interface for Cash Register for opening/closing.
 \item[Cash Register] - this part is responsible for contacting with all the devices in and around tool booth. It calculates the prices of tickets and manages the work flow, e.g. receives input from antenna, then calls barrier to open and closes it after the customer is leaving. It receives input from Ticket Reader and Antenna, sends data to: Ticket Printer, Touch Screen, Toll Station Server, Indicator, Credit Card Reader (expected confirmation) and it also reads data from: Touch Screen and Toll Station Server.
 \item[Credit Card Reader] - a hardware device, provided by Bank. It provides the interface that allows Cash Register to withdraw specified amount of money and receives confirmation.
 \item[Indicator] - simple hardware device for indicating Cashier's presence in the tool booth, updated by Cash Register.
 \item[Management Client] - the application with a computer, used by Enterprise Manager to send notification, change prices and generates reports. It has bidirectional connection with Enterprise Server to pull the needed data and updates with new one.
 \item[MonthlyPayment] - this class is responsible for handling recurring payments for toll tags, it is used by Enterprise Server.
-\item[PaymentAgreement] -  a class for storing information about payment in a Bank-System communication.
+\item[PaymentAgreement] - a class for storing information about payment in a Bank-System communication.
 \item[Subscription] - this class represents registered toll tag, storing toll tag and account information needed for monthly payments. Is used by Servers.
 \item[Ticket] - a class for storing the data about single tickets, like price and vehicle type.  
 \item[Ticket Printer] - simple printer for printing tickets, that receives the data from Cash Register
-\item[Ticket Reader] - it is hardware device, that reads the ticket and sends data to Cash Register.
+\item[Ticket Reader] - it is a hardware device, that reads the ticket and sends data to Cash Register.
 \item[Toll Enterprise Server] - a machine or cluster, storing all information about customers, prices, registered toll tags and stations. It provides the backend for Management Client and accepts the data from it. It also collects form data from Webserver and perform monthly payments with a Bank interface. It has bidirectional connection with Toll Station in order to synchronize data like prices, registered toll tags, checks and tickets. 
 \item [Toll Station Client] - a computer for a Station Manager, that allows the report generating.
 \item [Toll Station Server] - this is computer responsible for storing the current prices, all the data about tags, checks and tickets, and synchronizing this data with Cash Register and Enterprise server.
-\item [Touch Screen] - hardware device connected to the Cash Register, that allows Cashier to interacts with system. It exchanges information with Cash Register in both direction, informing about user's action and fetching the feedback. 
-\item[Webserver] - this class represents physical computer, that host the website for customers. When customer changes the data, it updates the Enterprise Server.
+\item [Touch Screen] - hardware device connected to the Cash Register, that allows Cashier to interact with system. It exchanges information with Cash Register in both directions, informing about user's actions and fetching the feedback. 
+\item[Webserver] - this class represents a physical computer, that host the website for customers. When customer changes some data, it updates the Enterprise Server.
 \item[Website] - representation of website for customers. Is rendered by Webserver.
 \end{description}
 
 \subsection{OCL constrains}
-
+The diagrams \ref{fig:dcd1} to \ref{fig:dcd_ec} include OCL constraints. The OCL presented are only the none-trivial ones. 
 \begin{figure}
   \centering
   \includegraphics[scale=0.5]{\imgdir "cash_register_dcd"}
