@@ -18,61 +18,60 @@ The figure below shows a model of the system domain.
 This section provides an overview of all terminology used in this project.
 \subsubsection{Station-related terminology}
 \begin{description}
-
-  \item[Entry:] A point where the Customer enters the Motorway, consists of a selection of Toll Lanes and,Toll Station and Toll Both.
+  \item[Entry:] A point where the Customer enters the Motorway, consists of a selection of Toll Lanes and, Toll Station and Toll Booths.
   \item[Exit:] A point where the Customer leaves the Motorway, consists of a selection of Toll Lanes and a Toll Station.
-  \item[Express Toll Lane:] Toll Lane prepared to work with Toll Tags
-  \item[Motorway:] The road for the Customers consisting of at least one Entry and Exit
-  \item[Normal Toll Lane:] Toll Lane prepared to work with Single Tickets
-  \item[Toll Lane] a path on the Entry on which the Customer (one at the time) can enter the Motorway. It has a Computer.
+    \item[Toll Lane] a path on the Entry on which the Customer (one at the time) can enter the Motorway.
   \item[Toll Station:] A place where the Station Manager resides and overseers the Toll Lanes
   \item[Toll System:] The infrastructure for managing the Motorway, used by Cashiers, Managers and Customers, also called Enterprise.
+  \item[Express Toll Lane:] Toll Lane prepared to work with Toll Tags.
+  \item[Motorway:] The road for the Customers consisting of at least one Entry and Exit.
+  \item[Normal Toll Lane:] Toll Lane prepared to work with Single Tickets.
+
 \end{description}
 \subsubsection{Payment \& Ticket terminology}
 \begin{description}
-  \item[Cash] one of the payment methods on the Normal Toll Lane for a Single Ticket, requires a Cashier using a Cash Register. The availability of this method on the Toll Lane is confirmed by the Indicator
-  \item[Check In] Operation of entering the Motorway on the Entry performed by the Customer with use of Single Ticket or Toll Tag. Successful Check In yields the Toll Lane Barrier to open
-  \item[Check Out] Operation of leaving the Motorway on the Exit performed by the Customer with use of Single Ticket or Toll Tag. Successful Check Out yields the Toll Lane Barrier to open
+  \item[Cash] one of the payment methods on the Normal Toll Lane for a Single Ticket, requires a Cashier using a Cash Register. The availability of this method on the Toll Lane is confirmed by the Indicator.
+  \item[Check In] Operation of entering the Motorway on the Entry performed by the Customer with use of Single Ticket or Toll Tag. Successful Check In yields the Toll Lane Barrier to open.
+  \item[Check Out] Operation of leaving the Motorway on the Exit performed by the Customer with use of Single Ticket or Toll Tag. Successful Check Out yields the Toll Lane Barrier to open.
   \item[Credit card] One of the payment methods on the Normal Toll Lane for a Single Ticket, does not require a Cashier, but is performed through self service with a Credit Card Reader.
-  \item[Single Ticket] One of the payment methods available for Motorway Customers, has a fixed price based on the Vehicle type and the Ticket Validity of 24 hours after being printed
-  \item[Ticket Validity] State of the Single Ticket stating, if it can be used for a successful Check Out operation. Voids after 24 hours of sale or after a Check Out
-  \item[Toll Charge] The price for the single travel performed by the Customer who uses the Toll Tag, its value depends on the Travel Distance and the type of the Vehicle
-  \item[Toll Tag:] A wireless beacon placed in the Vehicle which allows the Customer driving it to use the Express Toll Lanes
-  \item[Travel Distance:] Distance between the chosen Entry and Exit, where the corresponding Check in and Check out were performed by the Customer using the Toll Tag
+  \item[Single Ticket] One of the payment methods available for Motorway Customers, has a fixed price based on the Vehicle type and the Ticket Validity of 24 hours after being printed.
+  \item[Ticket Validity] State of the Single Ticket stating, if it can be used for a successful Check Out operation. Voids after 24 hours of sale or after a Check Out.
+  \item[Toll Charge] The price for the single travel performed by the Customer who uses the Toll Tag, its value depends on the Travel Distance and the type of the Vehicle.
+  \item[Toll Tag:] A wireless beacon placed in the Vehicle which allows the Customer driving it to use the Express Toll Lanes.
+  \item[Travel Distance:] Distance between the chosen Entry and Exit, where the corresponding Check in and Check out were performed by the Customer using the Toll Tag.
 \end{description}
 
 \subsubsection{Actors}
 \begin{description}
 
   \item[Bank:] entity responsible for processing payments for Toll Tags and Credit Card, reached through a dedicated communication channel.
-  \item[Cashier:] - one of the users of the Toll System, he is responsible for either selling Single Tickets with Cash on the Toll Lanes with Cash Register or resolving problems with Ticket Validity at the Exit
-  \item[Customer:] A Vehicle owner, one of the Toll System users
-  \item[Manager] - Toll System user responsible for managing Toll Station (Toll Station Manager) or the whole Toll System (Enterprise Manager). Can generate Reports and change Single Ticket or Toll Tag price
+  \item[Cashier:] - one of the users of the Toll System, he/she is responsible for either selling Single Tickets with Cash on the Toll Lanes with Cash Register or resolving problems with Ticket Validity at the Exit.
+  \item[Customer:] A Vehicle owner, one of the Toll System users.
+  \item[Manager] - Toll System user responsible for managing Toll Station (Toll Station Manager) or the whole Toll System (Enterprise Manager). Can generate Reports (both manager types) and send notifications, change Single Ticket or Toll Tag price (enterprise manager only).
 
 \end{description}
 
 \subsubsection{Hardware components}
 \begin{description}
 
-  \item[Antenna] - Part of the Express Lanes, connects to the Toll Tag to perform a Check In or Check out
-  \item[Barrier] - part of the Toll Lane, stops the Vehicle from passing through it unless a valid Check In or Check Out is performed
-  \item[Cash register] - a device placed in the Normal Tall Lane, operated by Cashier
-  \item[Client] - A Computer used by Managers for registration and generating reports - registration of Managers
+  \item[Antenna] - Part of the Express Lanes, connects to the Toll Tag to perform a Check In or Check out.
+  \item[Barrier] - part of the Toll Lane, stops the Vehicle from passing through it unless a valid Check In or Check Out is performed.
+  \item[Cash register] - a device placed in the Normal Tall Lane, operated by Cashier.
+  \item[Client] - A Computer used by Managers for changing toll rates, sending notifications to customers and generating reports.
   \item[Computer] - Client for Station, Client and server for Toll System or simple terminal for Toll Lane to be used by the Toll System users.
-  \item[Credit card reader] - a device placed in every Normal Tall Lane, operated by Customer
-  \item[Internet] - a channel for communication between the Toll System, Bank and Customers
-  \item[Printer] - a device placed in every Toll Lane and Stations, used for printing Single Tickets and Reports
-  \item[Server] - connects all computers in Toll Station (Station Server) or Toll System (Enterprise Server). Server is managed by a Client (Station or Enterprise).
+  \item[Credit card reader] - a device placed in every Normal Tall Lane, operated by Customer.
+  \item[Printer] - a device placed in every Toll Lane and Stations, used for printing Single Tickets and Reports.
+  \item[Server] - connects all computers in Toll Station (Station Server) or Toll System (Enterprise Server). Server is managed through a Client (Station or Enterprise).
   \item[Single ticket reader] - part of the Normal Toll Lanes at the Exits, checks the Validity of Single Tickets presented by the Customers during the Check Out operation.
-  \item[Toll lane indicator] - indicates, if the Toll Lane allows Cash payment, i. e. if the Cash Register is installed and the Cashier is present
-  \item[Touch screen] - interface for the Computer
-  \item[Vehicle] - car, motorbike or truck operated by the Customer, can have a Toll Tag attached to it
-  \item[Web server] - Toll System’s gate to the Internet
+  \item[Toll lane indicator] - indicates, if the Toll Lane allows Cash payment, i. e. if the Cash Register is installed and the Cashier is present.
+  \item[Touch screen] - interface for the Computer.
+  \item[Vehicle] - car, motorbike or truck operated by the Customer, can have a Toll Tag attached to it.
+  \item[Web server] - Toll System’s gate to the Internet.
 \end{description}
 \subsubsection{Other}
 \begin{description}
-  \item [Customer Notification] Information sent to all Customers via Internet, initialized by Enterprise Manager
-  \item[Report] Summary of the Toll System performance, generated by the Manager with use of the Client
+  \item [Customer Notification] Information sent to all Customers via Internet, initialized by Enterprise Manager.
+  \item[Report] Summary of the Toll System performance, generated by the Manager with use of the Client.
   \item[Subscription] Agreement between a toll tag customer and the toll enterprise to enable the toll enterprise to make recurring withdrawals based on toll tag usage.
 \end{description}
 
@@ -83,7 +82,7 @@ Actors and their capabilities.
 
 \begin{itemize}
   \item Launch lane
-  \item Sell ticket / check in
+  \item Sell ticket / check in 
   \item Solve check out problems
 \end{itemize}
 \end{itemize}
@@ -542,7 +541,9 @@ The diagram below presents a more detailed view on the use cases in the system.
 }
 \end{usecase}
 
-\section{CRC cards} \anna \piotr \\
+\section{CRC cards}
+The figures below show the CRC cards made based on the detailed use case descriptions.
+
 \begin{figure}[H]
 \includegraphics[scale=0.35]{\imgdir "CRC1"}
 \centering
