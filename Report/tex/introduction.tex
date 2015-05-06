@@ -2,25 +2,24 @@
 %From PD. Keep in mind while writing.
 %The introduction should describe the steps actually used to solve the modelling task and why these stepswere chosen. For example, were techniques from agile modelling used (which?), were CRC cards used,domain-driven design, explorative modelling, etc.?
 \noindent
-This document contains the modelling of a toll system which could be used on any highway road. The system needs to implemented in toll stations which are placed at the entrance and exit point of the highway. Customers can use the highway by purchasing a single ticket which is at fixed price at the entrance or by using a toll tag which could be bought via the system online. The customer have the option to purchase the ticket by cash or by credit card at the toll stations. In order to identify the toll tag there are wireless sensors which are installed on the toll station to read the toll tag on a vehicle. Once the toll tag is read by the sensor, the system will authenticate the vehicle, then the barrier at the toll station will open allowing the user to use the highway. The authentication of the vehicle takes place at both entrance and the exit toll stations. Station managers can query statistical data from the system which can give the manager an overview of the system usage. Another additional feature of the system is that it enables enterprise manager to send email or mail notification to customers about prices changes.
+The purpose of this document is to model a system for collecting toll on highways. The central part of the system are toll stations, which are placed at highway entrances and exits. Each station has several types of lanes, which are used by the customers to check in and out of the highway. Customers can do so by purchasing single tickets, which are valid for a single journey or by using toll tags, The single tickets are purchased upon arrival at a toll station with cash or credit card. The toll tags can be ordered online or on the toll stations. The toll tags enable the customers to expedite their entering and leaving the highways, since they are operated wirelessly and automatically, whereas single tickets require some manual actions to be performed. \\ The entire system comprises of many toll stations, each with hardware and personnel required to perform the basic operation of the system - checking vehicles in and out and collecting toll. Meanwhile, it is also possible to query statistical data from the system in form of reports, which give overview of the single stations or the entire enterprise. Finally, some administrative tasks like changing the toll rates and sending notifications to customers are also included in the system.
+
 \section{Methodology Used}
-The software development workflow technique we used was Kanban, where the use cases/feature were listed as work items and each item was processed through the following process:
+The workflow management technique used throughout this project was Kanban. The use cases/features were listed as work items and each item was processed as follows:
 
 \begin{itemize}
-  \item Requiremnts 
+  \item Requirements 
   \item Development
   \item Test
   \item Implement
 \end{itemize}
 
+In the requirements phase one use case is fully analysed of its requirements before its is advanced to the development phase. The requirements were categorized into two groups: functional and non-functional requirements. The functional requirements for the toll system were clear from the system specification document, however, several discussions were needed to resolve ambiguities.
 
-In the requirements phase one use case is fully analyzed of its requirements before its is advanced to the development phase. The requirements were categorized into two, Functional and Nonfunctional Requirements, were functional requirements for the toll system were clear from the system specification document, however there were few ambiguous areas. 
+The development phase utilised agile modelling technique SCRUM, which enabled us to model the system incrementally and iteratively. While modelling the system, due to changes in understanding on how the system should behave, using SCRUM was a great choice.  The modelling tasks were divided among smaller groups of pairs, which not only helped to complete the tasks faster, but also meant that people were constantly checking each others work. 
 
-The software system development phase was modeled using agile modeling technique scrum which enabled us to model the system incrementally and iteratively. While modeling the system, due to changes on how the system should behave due to the ambiguity of the requirements using scrum was a great choice.  The modeling tasks were divided among smaller groups of pairs which helped to complete the tasks faster but also there was another person to judge the other. 
+CRC cards were developed in order for conceptual modelling of the system. The use of CRC cards gives the developers an overview of what each class is responsible for and what it does in the system. 
 
-CRC cards were developed in order for conceptual modelling of the system.  The use of CRC cards will give the developer an overview of what each class is responsible for and what it does in the system. 
+The testing of the model was done by using acceptance test. These were expressed by using FIT tables. Furthermore, use case realisation was validated by creating sequence diagrams for each use case. By doing so, greater understanding of the system was achieved and it made much easier to spot errors. Upon spotting errors or unmet requirements, we went back in the process and amended the issues. By testing the model we managed to validate each if each use case meets the requirement of the system.
 
-The testing of the software system model was done by using acceptance test, we achieved this by using language to express acceptance test called Fit. By testing the model we managed to validate each if each use case meets the requirement of the system. After the validation tests, we managed to find some use cases where the requirement was not met so we have to go back and change the development.  Using Fit we have designed Fit tables which shows all the test cases done for the system, this can be seen in chapter 3.
-
-Implementation of the system model was not part of the requirement of the project, therefore we did not consider implementation of the system.
-
+Implementation of the system model was out of scope for this project and therefore implementation/platform specific considerations are not part of this report.
