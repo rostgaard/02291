@@ -4,6 +4,15 @@
 \section{Domain Analysis}
 %From PD. Keep in mind while writing.
 %Create a glossary explaining the notions and terminologies discovered when analysing the domain of the toll system. Create a class diagram of the domain. Describe the basic workflows / business proceses of the toll system as activity diagrams.
+
+\subsection{Domain model}
+The figure below shows a model of the system domain.
+\begin{figure}[H]
+\includegraphics[scale=0.4]{\imgdir "Domain Model"}
+\caption{Domain model}
+\label{fig:domain_model}
+\end{figure}
+
 \subsection{Glossary}
 \subsubsection{Station-related terminology}
 \begin{description}
@@ -107,11 +116,8 @@ Actors and their capabilities.
 \end{itemize}
 \end{itemize}
 
-%TODO: <SHORT TEXT>
-%TODO: <ACTIVITY DIAGRAM>
-
+\subsection{Activity diagrams of the basic workflow}
 \begin{figure}
-
 \caption{Activity Diagram of the Basic Workflow}
 \end{figure}
 
@@ -605,10 +611,3 @@ The non-functional requirements describe how the system is supposed to be. Below
   \item[NRQ4] The fault rate of the wireless toll collection (with antennas and toll tags) shall be at most 1 vehicle per day per toll station.
   \item[NRQ5] Station and enterprise generation shall be fast. It shall take no longer than 30 seconds to generate and display a report.
 \end{description}
-
-
-\begin{figure}
-\includegraphics[scale=0.4]{\imgdir "Domain Model"}
-\caption{Domain model}
-\label{fig:domain_model}
-\end{figure}
