@@ -3,7 +3,7 @@
 \noindent
 
 \section{Component Design}
-%Define the components of the system with their ports (i.e., a port is a set of required and provided   interfaces). For each provided interface of a port provide the protocol state machine. For hardware components that one would buy off the shelf, like antenna, ticket reader, barrier, . . . , it is sufficient to provide the ports with their protocol state machines without going into the details of their possible implementation.
+%Define the components of the system with their ports (i.e., a port is a set of required and provided   interfaces). For each provided interfacze of a port provide the protocol state machine. For hardware components that one would buy off the shelf, like antenna, ticket reader, barrier, . . . , it is sufficient to provide the ports with their protocol state machines without going into the details of their possible implementation.
 
 \begin{figure}
   \centering
@@ -29,6 +29,17 @@ The helpers are:
 
 \section{Class Design}
 %Define the classes used to implement the components. Some components can be implemented as a single classes; other components can be implemented by a set of classes. Provide any necessary class invariants using OCL constraints. Specify the contracts of non-trivial operations using OCL constraints (pre:/post:). Describe each class, their interaction, and the contract of operations also using informal text. Note that for hardware components that one would buy off the shelf, like antenna, ticket reader, barrier, ... , it is not necessary to detail their implementation (cf. Sect. 4).
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.5]{\imgdir "dcd_1"}
+  \caption{Detailed class diagram, part 1.}
+  \label{fig:dcd1}
+  \includegraphics[scale=0.5]{\imgdir "dcd_2"}
+  \caption{Detailed class diagram, part 2.}
+  \label{fig:dcd2}
+\end{figure}
+
 \subsection{Class diagram of components}
 The detailed class design includes all the interfaces introduced in component diagram and most of the concepts presented in the domain model. 
 The classes has following interactions and contracts:
@@ -40,23 +51,38 @@ The classes has following interactions and contracts:
 \item[Cash Register] - this part is responsible for contacting with all the devices in and around tool booth. It calculates the prices of tickets and manages the work flow, e.g. receives input from antenna, then calls barrier to open and closes it after the customer is leaving. It receives input from Ticket Reader and Antenna, sends data to: Ticket Printer, Touch Screen, Toll Station Server, Indicator, Credit Card Reader (expected confirmation) and it also reads data from: Touch Screen and Toll Station Server.
 \item[Credit Card Reader] - a hardware device, provided by Bank. It provides the interface that allows Cash Register to withdraw specified amount of money and receives confirmation.
 \item[Indicator] - simple hardware device for indicating Cashier's presence in the tool booth, updated by Cash Register.
-
-\item[Management Client] - the application with a computer, used by Enterprise Manager to send notification, change prices and generates reports. It has bidirectional connection with Enterprise Server to pull the needed data and updates with new one. 
-\item[Ticket] - a class for storing 
-\item [Ticket Printer] - simple printer for printing tickets, that receives the data from Cash Register
-\item [Ticket Reader] - it is hardware device, that reads the ticket and sends data to Cash Register.
-\item [Toll Enterprise Server] - a machine or cluster, storing all information about customers, prices, registered toll tags and stations. It provides the backend for Management Client and accepts the data from it. It also collects form data from Webserver and perform monthly payments with a Bank interface. It has bidirectional connection with Toll Station in order to synchronize data like prices, registered toll tags, checks and tickets. 
+\item[Management Client] - the application with a computer, used by Enterprise Manager to send notification, change prices and generates reports. It has bidirectional connection with Enterprise Server to pull the needed data and updates with new one.
+\item[MonthlyPayment] - this class is responsible for handling recurring payments for toll tags, it is used by Enterprise Server.
+\item[PaymentAgreement] -  a class for storing information about payment in a Bank-System communication.
+\item[Subscription] - this class represents registered toll tag, storing toll tag and account information needed for monthly payments. Is used by Servers.
+\item[Ticket] - a class for storing the data about single tickets, like price and vehicle type.  
+\item[Ticket Printer] - simple printer for printing tickets, that receives the data from Cash Register
+\item[Ticket Reader] - it is hardware device, that reads the ticket and sends data to Cash Register.
+\item[Toll Enterprise Server] - a machine or cluster, storing all information about customers, prices, registered toll tags and stations. It provides the backend for Management Client and accepts the data from it. It also collects form data from Webserver and perform monthly payments with a Bank interface. It has bidirectional connection with Toll Station in order to synchronize data like prices, registered toll tags, checks and tickets. 
 \item [Toll Station Client] - a computer for a Station Manager, that allows the report generating.
 \item [Toll Station Server] - this is computer responsible for storing the current prices, all the data about tags, checks and tickets, and synchronizing this data with Cash Register and Enterprise server.
 \item [Touch Screen] - hardware device connected to the Cash Register, that allows Cashier to interacts with system. It exchanges information with Cash Register in both direction, informing about user's action and fetching the feedback. 
+\item[Webserver] - this class represents physical computer, that host the website for customers. When customer changes the data, it updates the Enterprise Server.
+\item[Website] - representation of website for customers. Is rendered by Webserver.
 \end{description}
+
+\subsection{OCL constrains}
 
 \begin{figure}
   \centering
-%  \includegraphics[scale=0.5]{\imgdir "Detailed Class"}
-  \caption{Detailed class diagram}
-  \label{fig:clas_diagram}
+  \includegraphics[scale=0.5]{\imgdir "cash_register_dcd"}
+  \caption{Detailed class diagram of Cash Register.}
+  \label{fig:dcd_cr}
+  \includegraphics[scale=0.5]{\imgdir "enterprise_client_dcd"}
+  \caption{Detailed class diagram of Management Client.}
+  \label{fig:dcd_mc}
+  \includegraphics[scale=0.5]{\imgdir "station_server_dcd"}
+  \caption{Detailed class diagram of Station Server.}
+  \label{fig:dcd_ss}
+  \includegraphics[scale=0.5]{\imgdir "enterprise_client_dcd"}
+  \caption{Detailed class diagram of Enterprise Client.}
+  \label{fig:dcd_ec}
 \end{figure}
-\subsection{OCL constrains}
+
 \section{Behaviour Design}
 %Describe the behaviour of each non-trivial class using object life cycle state machines.
