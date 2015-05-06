@@ -117,7 +117,6 @@ Actors and their capabilities.
 \end{itemize}
 
 \subsection{Activity diagram}
-\trevon \pawel \\
 The figure below shows the basic activity workflow in the system.
 \begin{figure}[H]
 \includegraphics[scale=0.35]{\imgdir "Activity diagram"}
@@ -126,7 +125,7 @@ The figure below shows the basic activity workflow in the system.
 \label{fig:activity_diagram}
 \end{figure}
 
-\section{Use cases} \martin \pawel \\
+\section{Use cases}
 This section contains use case diagrams and detailed use case descriptions.
 
 \subsection{Use case diagrams}
@@ -151,7 +150,7 @@ The diagram below presents a more detailed view on the use cases in the system.
 \subsection{Customer point of view}
 \begin{usecase}
 \addtitle{Use Case 1}{Check-in on a normal, manned lane} 
-\addfield{Author:}{\martin}
+\addfield{Author:}{\martin , \pawel}
 \addfield{Description:}{Customer goes through a check-in procedure buying a single ticket on a lane with a cashier}
 \addfield{Primary Actor:}{Customer}
 \addfield{Notes:}{Payment can be done with cash or credit card}
@@ -183,7 +182,7 @@ The diagram below presents a more detailed view on the use cases in the system.
 \end{usecase}
 \begin{usecase}
 \addtitle{Use Case 2}{Check-in on a normal, unmanned lane} 
-\addfield{Author:}{\martin}
+\addfield{Author:}{\martin , \pawel}
 \addfield{Description:}{Customer goes through a check-in procedure buying a single ticket on a lane without a cashier}
 \addfield{Primary Actor:}{Customer}
 \addfield{Notes:}{Payment can only be done only with credit card}
@@ -218,7 +217,7 @@ The diagram below presents a more detailed view on the use cases in the system.
 \end{usecase}
 \begin{usecase}
 \addtitle{Use Case 3}{Check-in on an express lane} 
-\addfield{Author:}{\martin}
+\addfield{Author:}{\martin , \pawel}
 \addfield{Description:}{Customer goes through a check-in procedure using a toll tag on an express lane}
 \addfield{Primary Actor:}{Customer}
 
@@ -247,7 +246,7 @@ The diagram below presents a more detailed view on the use cases in the system.
 \end{usecase}
 \begin{usecase}
 \addtitle{Use Case 4}{Check-out with a single ticket} 
-\addfield{Author:}{\martin}
+\addfield{Author:}{\kim , \trevon}
 \addfield{Description:}{Customer goes through a check-out procedure using a single ticket}
 \addfield{Primary Actor:}{Customer}
 
@@ -276,7 +275,7 @@ The diagram below presents a more detailed view on the use cases in the system.
 \end{usecase}
 \begin{usecase}
 \addtitle{Use Case 5}{Check-out with a toll tag} 
-\addfield{Author:}{\martin}
+\addfield{Author:}{\kim , \trevon}
 \addfield{Description:}{Customer goes through a check-out procedure using a toll tag}
 \addfield{Primary Actor:}{Customer}
 
@@ -305,7 +304,7 @@ The diagram below presents a more detailed view on the use cases in the system.
 \end{usecase}
 \begin{usecase}
 \addtitle{Use Case 6}{Toll tag purchase} 
-\addfield{Author:}{\pawel}
+\addfield{Author:}{\anna , \piotr}
 \addfield{Description:}{Customer procures a toll tag for him/herself}
 \addfield{Primary Actor:}{Customer}
 
@@ -334,7 +333,7 @@ The diagram below presents a more detailed view on the use cases in the system.
 \subsection{Cashier point of view}
 \begin{usecase}
 \addtitle{Use Case 7}{Launching a toll lane} 
-\addfield{Author:}{\pawel}
+\addfield{Author:}{\anna , \piotr}
 \addfield{Description:}{A cashier launches a normal, manned toll lane}
 \addfield{Primary Actor:}{Cashier}
 \addfield{Notes:}{A "normal" lane is not an express lane}
@@ -354,7 +353,7 @@ The diagram below presents a more detailed view on the use cases in the system.
 \end{usecase}
 \begin{usecase}
 \addtitle{Use Case 8}{Checking a vehicle in} 
-\addfield{Author:}{\pawel}
+\addfield{Author:}{\martin , \pawel}
 \addfield{Description:}{A cashier checks a vehicle in}
 \addfield{Primary Actor:}{Cashier}
 \addfield{Notes:}{A "normal" lane is not an express lane. Payment can be done with both cash and credit card.}
@@ -386,7 +385,7 @@ The diagram below presents a more detailed view on the use cases in the system.
 \end{usecase}
 \begin{usecase}
 \addtitle{Use Case 9}{Checking a vehicle out} 
-\addfield{Author:}{\pawel}
+\addfield{Author:}{\kim , \trevon}
 \addfield{Description:}{A cashier checks a vehicle out manually in case of malfunction of the automatic system}
 \addfield{Primary Actor:}{Cashier}
 \addfield{Notes:}{An example problem can be a customer without validated ticket arriving to the lane or a toll tag malfunctioning. The use case abstracts from the issues that may arise and how they ought to be solved - suffice to say, that it is in the cashiers discretion and/or according to some internal rules and guidelines.}
@@ -408,7 +407,7 @@ The diagram below presents a more detailed view on the use cases in the system.
 \subsection{Station manager point of view}
 \begin{usecase}
 \addtitle{Use Case 10}{Identification} 
-\addfield{Author:}{\pawel}
+\addfield{Author:}{\anna , \piotr}
 \addfield{Description:}{A station manager logs into the station client}
 \addfield{Primary Actor:}{Station manager}
 \addfield{Notes:}{The identification procedure is abstracted from}
@@ -424,7 +423,7 @@ The diagram below presents a more detailed view on the use cases in the system.
 \end{usecase}
 \begin{usecase}
 \addtitle{Use Case 11}{Station report generation} 
-\addfield{Author:}{\pawel}
+\addfield{Author:}{\anna , \piotr}
 \addfield{Description:}{A station manager generates a periodical station statistics report}
 \addfield{Primary Actor:}{Station manager}
 \addfield{Notes:}{An invalid time period is one where the start date/time comes after the end date/time.}
@@ -451,7 +450,7 @@ The diagram below presents a more detailed view on the use cases in the system.
 \subsection{Enterprise manager point of view}
 \begin{usecase}
 \addtitle{Use Case 12}{Identification} 
-\addfield{Author:}{\pawel}
+\addfield{Author:}{\anna , \piotr}
 \addfield{Description:}{An enterprise manager logs into the enterprise client}
 \addfield{Primary Actor:}{Enterprise manager}
 \addfield{Notes:}{The identification procedure is abstracted from}
@@ -467,7 +466,7 @@ The diagram below presents a more detailed view on the use cases in the system.
 \end{usecase}
 \begin{usecase}
 \addtitle{Use Case 13}{Toll rate change} 
-\addfield{Author:}{\pawel}
+\addfield{Author:}{\martin , \pawel}
 \addfield{Description:}{An enterprise manager changes the toll rates}
 \addfield{Primary Actor:}{Enterprise manager}
 \addfield{Notes:}{The rate for toll tags is a fixed price per kilometer. The rate for single tickets is a fixed price for a trip}
@@ -497,7 +496,7 @@ The diagram below presents a more detailed view on the use cases in the system.
 \end{usecase}
 \begin{usecase}
 \addtitle{Use Case 14}{Notifying customers about changes} 
-\addfield{Author:}{\pawel}
+\addfield{Author:}{\trevon , \kim}
 \addfield{Description:}{An enterprise manager sends out a notification to the customers}
 \addfield{Primary Actor:}{Enterprise manager}
 \addfield{Notes:}{The notification method can be either by traditional mail or email}
@@ -518,7 +517,7 @@ The diagram below presents a more detailed view on the use cases in the system.
 \end{usecase}
 \begin{usecase}
 \addtitle{Use Case 15}{Enterprise report generation} 
-\addfield{Author:}{\pawel}
+\addfield{Author:}{\trevon , \kim}
 \addfield{Description:}{An enterprise manager generates a periodical enterprise statistics report}
 \addfield{Primary Actor:}{Enterprise manager}
 \addfield{Notes:}{An invalid time period is one where the start date/time comes after the end date/time.}
@@ -558,7 +557,7 @@ The diagram below presents a more detailed view on the use cases in the system.
 \label{fig:crc_2}
 \end{figure}
 
-\section{Functional Requirements} \pawel \\
+\section{Functional Requirements}
 \label{sec:requirements}
 %From PD. Keep in mind while writing.
 %Based on the basic workflows and on the problem description, identify the functional requirements using use cases. Create a use case diagram showing all identified use cases. Out of the use cases identified and shown in the use case diagram, select 4–6 use cases (cf. Sect. 4) according to their priority for the customer (who is the owner of the toll system). The selected use cases form the basis of the remaining sections, e.g. the design and the validation sections. For the selected use cases create detailed use case descriptions according to the following template: 
@@ -608,7 +607,7 @@ The functional requirements describe what the system is supposed to do. Below is
   \item[RQ27] The rates for toll tags and single tickets shall be consistent for all toll stations of the enterprise.
 
 \end{description}
-\section{Non-Functional Requirements} \trevon \pawel \\
+\section{Non-Functional Requirements}
 The non-functional requirements describe how the system is supposed to be. Below is a list of such requirements applicable to the toll system:
 
 \begin{description}
