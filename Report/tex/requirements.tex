@@ -116,25 +116,12 @@ Actors and their capabilities.
 \caption{Activity Diagram of the Basic Workflow}
 \end{figure}
 
-\section{Functional Requirements}
-%From PD. Keep in mind while writing.
-%Based on the basic workflows and on the problem description, identify the functional requirements using use cases. Create a use case diagram showing all identified use cases. Out of the use cases identified and shown in the use case diagram, select 4–6 use cases (cf. Sect. 4) according to their priority for the customer (who is the owner of the toll system). The selected use cases form the basis of the remaining sections, e.g. the design and the validation sections. For the selected use cases create detailed use case descriptions according to the following template: 
-%1. Use Case Name
-%2. Summary
-%3. Actors
-%4. Preconditions
-%5. Basic course of events
-%6. Alternative paths
-%7. Postconditions
-%8. Notes
-%9. Author
-% You may use the usecase.sty for easy formatting.
-\subsection{Identified requirements}
-
+\section{Use cases} \martin \pawel \\
+\subsection{Customer point of view}
 \begin{usecase}
-\addtitle{Use Case 1}{Purchase single ticket from manned lane} 
+\addtitle{Use Case 1}{Check-in on a normal, manned lane} 
 \addfield{Author:}{\martin}
-\addfield{Description:}{Customer buys a single ticket}
+\addfield{Description:}{Customer goes through a check-in procedure buying a single ticket on a lane with a cashier}
 \addfield{Primary Actor:}{Customer}
 \addfield{Notes:}{Payment can be done with cash or credit card}
 
@@ -148,12 +135,12 @@ Actors and their capabilities.
       \item Barrier is down
 }
 \additemizedfield{Postconditions:}{
-      \item The customer is now on the toll road
+      \item Barrier is lifted and the customer is now on the toll road
 }
 \addscenario{Main Success Scenario:}{
       \item Looks for cashier lane and drives up to it
       \item Pays the required amount of money
-      \item Takes ticket and receipt
+      \item Takes ticket
       \item Drives through the barrier
 }
 \addscenario{Extensions:}{
@@ -164,23 +151,27 @@ Actors and their capabilities.
 }
 \end{usecase}
 \begin{usecase}
-\addtitle{Use Case 2}{Purchase single ticket from unmanned lane} 
+\addtitle{Use Case 2}{Check-in on a normal, unmanned lane} 
 \addfield{Author:}{\martin}
-\addfield{Description:}{Customer buys a single ticket with credit card}
+\addfield{Description:}{Customer goes through a check-in procedure buying a single ticket on a lane without a cashier}
 \addfield{Primary Actor:}{Customer}
 \addfield{Notes:}{Payment can only be done only with credit card}
 
 \additemizedfield{Stakeholders}{
 	\item Customer
 }
+\additemizedfield{Preconditions:}{
+      \item Customer has arrived at toll station from outside the toll system
+      \item Barrier is down
+}
 \additemizedfield{Postconditions:}{
-      \item The customer is now on the toll road
+      \item Barrier is lifted and the customer is now on the toll road
 }
 \addscenario{Main Success Scenario:}{
-      \item Looks for cashier lane and drives up to it
+      \item Looks for unmanned normal lane and drives up to it
       \item Picks vehicle type and is presented with amount to be paid
       \item Inserts credit card into credit card reader and enters credit card PIN
-      \item Takes ticket and receipt
+      \item Takes ticket
       \item Drives through the barrier
 }
 \addscenario{Extensions:}{
@@ -194,9 +185,345 @@ Actors and their capabilities.
 		\end{enumerate}
 }
 \end{usecase}
+\begin{usecase}
+\addtitle{Use Case 3}{Check-in on an express lane} 
+\addfield{Author:}{\martin}
+\addfield{Description:}{Customer goes through a check-in procedure using a toll tag on an express lane}
+\addfield{Primary Actor:}{Customer}
 
+\additemizedfield{Stakeholders}{
+	\item Customer
+}
+\additemizedfield{Preconditions:}{
+      \item Customer has arrived at toll station from outside the toll system
+      \item Barrier is down
+}
+\additemizedfield{Postconditions:}{
+      \item Barrier is lifted and the customer is now on the toll road
+}
+\addscenario{Main Success Scenario:}{
+      \item Looks for express lane and drives up to it
+      \item Drives at specified speed and waits for toll tag validation to complete
+      \item Drives through the barrier
+}
+\addscenario{Extensions:}{
+	\item[2.a] Toll tag not validated
+		\begin{enumerate}
+		\item[1.] Retries
+		\item[2.] If still unsuccessful, drives to a normal lane to check-in there
+		\end{enumerate}
+}
+\end{usecase}
+\begin{usecase}
+\addtitle{Use Case 4}{Check-out with a single ticket} 
+\addfield{Author:}{\martin}
+\addfield{Description:}{Customer goes through a check-out procedure using a single ticket}
+\addfield{Primary Actor:}{Customer}
 
+\additemizedfield{Stakeholders}{
+	\item Customer
+}
+\additemizedfield{Preconditions:}{
+      \item Customer has arrived at toll station from the toll road
+      \item Barrier is down
+}
+\additemizedfield{Postconditions:}{
+      \item Barrier is lifted and the customer has now left the toll road system
+}
+\addscenario{Main Success Scenario:}{
+      \item Looks for normal lane and drives up to it
+      \item Inserts ticket to ticket reader
+      \item Drives through the barrier
+}
+\addscenario{Extensions:}{
+	\item[2.a] Ticket not validated
+		\begin{enumerate}
+		\item[1.] Waits for cashier to show up
+		\item[2.] Follows cashiers directions
+		\end{enumerate}
+}
+\end{usecase}
+\begin{usecase}
+\addtitle{Use Case 5}{Check-out with a toll tag} 
+\addfield{Author:}{\martin}
+\addfield{Description:}{Customer goes through a check-out procedure using a toll tag}
+\addfield{Primary Actor:}{Customer}
 
+\additemizedfield{Stakeholders}{
+	\item Customer
+}
+\additemizedfield{Preconditions:}{
+      \item Customer has arrived at toll station from the toll road
+      \item Barrier is down
+}
+\additemizedfield{Postconditions:}{
+      \item The customer has now left the toll road system
+}
+\addscenario{Main Success Scenario:}{
+      \item Looks for toll tag lane and drives up to it
+      \item Drives at specified speed and waits for toll tag validation to complete
+      \item Drives through the barrier
+}
+\addscenario{Extensions:}{
+	\item[2.a] Toll tag not validated
+		\begin{enumerate}
+		\item[1.] Waits for cashier to show up
+		\item[2.] Follows cashiers directions
+		\end{enumerate}
+}
+\end{usecase}
+\begin{usecase}
+\addtitle{Use Case 6}{Toll tag purchase} 
+\addfield{Author:}{\pawel}
+\addfield{Description:}{Customer procures a toll tag for him/herself}
+\addfield{Primary Actor:}{Customer}
+
+\additemizedfield{Stakeholders}{
+	\item Customer
+	\item Toll enterprise
+}
+\additemizedfield{Postconditions:}{
+      \item The customer gets the toll tag by mail and installs it in the vehicle
+}
+\addscenario{Main Success Scenario:}{
+      \item Visits the toll enterprise website
+      \item A form is displayed
+      \item Fills a form with vehicle, personal and bank information
+      \item Submits the form online
+}
+\addscenario{Extensions:}{
+	\item[1.a] Arrives at a toll station
+		\begin{enumerate}
+		\item[1.] Takes a form
+		\item[2.] Fills a form with vehicle, personal and bank information
+		\item[3.] Submits the form in person
+		\end{enumerate}
+}
+\end{usecase}
+\subsection{Cashier point of view}
+\begin{usecase}
+\addtitle{Use Case 7}{Launching a toll lane} 
+\addfield{Author:}{\pawel}
+\addfield{Description:}{A cashier launches a normal, manned toll lane}
+\addfield{Primary Actor:}{Cashier}
+\addfield{Notes:}{A "normal" lane is not an express lane}
+\additemizedfield{Stakeholders}{
+	\item Cashier
+}
+\additemizedfield{Preconditions:}{
+      \item The lane is a normal lane
+}
+\additemizedfield{Postconditions:}{
+      \item The toll lane is launched
+}
+\addscenario{Main Success Scenario:}{
+      \item Enters a toll lane
+      \item Identifies as cashier using a touch screen
+}
+\end{usecase}
+\begin{usecase}
+\addtitle{Use Case 8}{Checking a vehicle in} 
+\addfield{Author:}{\pawel}
+\addfield{Description:}{A cashier checks a vehicle in}
+\addfield{Primary Actor:}{Cashier}
+\addfield{Notes:}{A "normal" lane is not an express lane. Payment can be done with both cash and credit card.}
+\additemizedfield{Stakeholders}{
+	\item Cashier
+	\item Customer
+}
+\additemizedfield{Preconditions:}{
+      \item The lane is a normal lane
+      \item The lane has been launched
+      \item A vehicle has arrived at the lane
+}
+\additemizedfield{Postconditions:}{
+      \item Barrier is lifted and the vehicle drives through
+}
+\addscenario{Main Success Scenario:}{
+      \item Check the vehicle type
+      \item Informs the customer about the price
+      \item Receives the payment and processes it
+      \item Requests ticket to be printed
+      \item Gives ticket to the customer
+}
+\addscenario{Extensions:}{
+	\item[3.a] Customer is unable to pay the specified amount
+		\begin{enumerate}
+		\item[1.] No ticket printed and the vehicle is not allowed to pass through
+		\end{enumerate}
+}
+\end{usecase}
+\begin{usecase}
+\addtitle{Use Case 9}{Checking a vehicle out} 
+\addfield{Author:}{\pawel}
+\addfield{Description:}{A cashier checks a vehicle out manually in case of malfunction of the automatic system}
+\addfield{Primary Actor:}{Cashier}
+\addfield{Notes:}{An example problem can be a customer without validated ticket arriving to the lane or a toll tag malfunctioning. The use case abstracts from the issues that may arise and how they ought to be solved - suffice to say, that it is in the cashiers discretion and/or according to some internal rules and guidelines.}
+\additemizedfield{Stakeholders}{
+	\item Cashier
+	\item Customer
+}
+\additemizedfield{Preconditions:}{
+      \item A problem with the check-out has arisen
+}
+\additemizedfield{Postconditions:}{
+      \item Barrier is lifted and the vehicle drives through
+}
+\addscenario{Main Success Scenario:}{
+      \item Identifies the problem
+      \item Solves the problem
+}
+\end{usecase}
+\subsection{Station manager point of view}
+\begin{usecase}
+\addtitle{Use Case 10}{Identification} 
+\addfield{Author:}{\pawel}
+\addfield{Description:}{A station manager logs into the station client}
+\addfield{Primary Actor:}{Station manager}
+\addfield{Notes:}{The identification procedure is abstracted from}
+\additemizedfield{Stakeholders}{
+	\item Station manager
+}
+\additemizedfield{Postconditions:}{
+      \item The station manager is logged into the station client
+}
+\addscenario{Main Success Scenario:}{
+      \item Identifies as manager by pressing a button
+}
+\end{usecase}
+\begin{usecase}
+\addtitle{Use Case 11}{Station report generation} 
+\addfield{Author:}{\pawel}
+\addfield{Description:}{A station manager generates a periodical station statistics report}
+\addfield{Primary Actor:}{Station manager}
+\addfield{Notes:}{An invalid time period is one where the start date/time comes after the end date/time.}
+\additemizedfield{Stakeholders}{
+	\item Station manager
+}
+\additemizedfield{Preconditions:}{
+      \item The station manager is logged into the station system client (see use case identification).
+}
+\additemizedfield{Postconditions:}{
+      \item The report is generated. The report includes tallies for check-ins/outs by vehicle type and statistics for usage of single tickets and toll tags.
+}
+\addscenario{Main Success Scenario:}{
+      \item Enters a desired time period for the report
+      \item Request report to be generated
+}
+\addscenario{Extensions:}{
+	\item[1.a] Invalid time period is entered
+		\begin{enumerate}
+		\item[1.] The time period has to be entered again
+		\end{enumerate}
+}
+\end{usecase}
+\subsection{Enterprise manager point of view}
+\begin{usecase}
+\addtitle{Use Case 12}{Identification} 
+\addfield{Author:}{\pawel}
+\addfield{Description:}{An enterprise manager logs into the enterprise client}
+\addfield{Primary Actor:}{Enterprise manager}
+\addfield{Notes:}{The identification procedure is abstracted from}
+\additemizedfield{Stakeholders}{
+	\item Enterprise manager
+}
+\additemizedfield{Postconditions:}{
+      \item The enterprise manager is logged into the enterprise client
+}
+\addscenario{Main Success Scenario:}{
+      \item Identifies as manager by pressing a button
+}
+\end{usecase}
+\begin{usecase}
+\addtitle{Use Case 13}{Toll rate change} 
+\addfield{Author:}{\pawel}
+\addfield{Description:}{An enterprise manager changes the toll rates}
+\addfield{Primary Actor:}{Enterprise manager}
+\addfield{Notes:}{The rate for toll tags is a fixed price per kilometer. The rate for single tickets is a fixed price for a trip}
+\additemizedfield{Stakeholders}{
+	\item Enterprise manager
+}
+\additemizedfield{Preconditions:}{
+      \item The enterprise manager is logged into the station system client (see use case identification).
+}
+\additemizedfield{Postconditions:}{
+      \item The toll rates are consistent for all stations
+}
+\addscenario{Main Success Scenario:}{
+      \item Selects new rate for toll tags and/or single tickets
+      \item Toll rates are updated for all stations 
+}
+\addscenario{Extensions:}{
+	\item[1.a] Invalid rate is entered
+		\begin{enumerate}
+		\item[1.] The rate has to be entered again
+		\end{enumerate}
+	\item[2.a] A rate update on one (or more) station(s) has failed
+		\begin{enumerate}
+		\item[1.] The rates remain unchanged for the whole system
+		\end{enumerate}
+}
+\end{usecase}
+\begin{usecase}
+\addtitle{Use Case 14}{Notifying customers about changes} 
+\addfield{Author:}{\pawel}
+\addfield{Description:}{An enterprise manager sends out a notification to the customers}
+\addfield{Primary Actor:}{Enterprise manager}
+\addfield{Notes:}{The notification method can be either by traditional mail or email}
+\additemizedfield{Stakeholders}{
+	\item Enterprise manager
+	\item Customers
+}
+\additemizedfield{Preconditions:}{
+      \item The enterprise manager is logged into the station system client (see use case identification).
+}
+\additemizedfield{Postconditions:}{
+      \item The notifications are sent out to customers
+}
+\addscenario{Main Success Scenario:}{
+      \item Enters notification text
+      \item Selects notification method
+}
+\end{usecase}
+\begin{usecase}
+\addtitle{Use Case 15}{Enterprise report generation} 
+\addfield{Author:}{\pawel}
+\addfield{Description:}{An enterprise manager generates a periodical enterprise statistics report}
+\addfield{Primary Actor:}{Enterprise manager}
+\addfield{Notes:}{An invalid time period is one where the start date/time comes after the end date/time.}
+\additemizedfield{Stakeholders}{
+	\item Enterprise manager
+}
+\additemizedfield{Preconditions:}{
+      \item The enterprise manager is logged into the enterprise system client (see use case identification).
+}
+\additemizedfield{Postconditions:}{
+      \item The report is generated. The report includes tallies for check-ins/outs by vehicle type and statistics for usage of single tickets and toll tags for all stations.
+}
+\addscenario{Main Success Scenario:}{
+      \item Enters a desired time period for the report
+      \item Request report to be generated
+}
+\addscenario{Extensions:}{
+	\item[1.a] Invalid time period is entered
+		\begin{enumerate}
+		\item[1.] The time period has to be entered again
+		\end{enumerate}
+}
+\end{usecase}
+\section{Functional Requirements} \pawel \\
+%From PD. Keep in mind while writing.
+%Based on the basic workflows and on the problem description, identify the functional requirements using use cases. Create a use case diagram showing all identified use cases. Out of the use cases identified and shown in the use case diagram, select 4–6 use cases (cf. Sect. 4) according to their priority for the customer (who is the owner of the toll system). The selected use cases form the basis of the remaining sections, e.g. the design and the validation sections. For the selected use cases create detailed use case descriptions according to the following template: 
+%1. Use Case Name
+%2. Summary
+%3. Actors
+%4. Preconditions
+%5. Basic course of events
+%6. Alternative paths
+%7. Postconditions
+%8. Notes
+%9. Author
+% You may use the usecase.sty for easy formatting.
 The functional requirements describe what the system is supposed to do. Below is a list of such requirements applicable to the toll system:
 \begin{description}
   \item[RQ1] The system shall be able to enforce toll collection on motorways.
@@ -232,7 +559,7 @@ The functional requirements describe what the system is supposed to do. Below is
   \item[RQ26] It shall be possible to send arbitrary notifications to customers via standard mail or email.
 
 \end{description}
-\subsubsection{Non-Functional Requirements}
+\section{Non-Functional Requirements} \trevon \pawel \\
 The non-functional requirements describe how the system is supposed to be. Below is a list of such requirements applicable to the toll system:
 
 \begin{description}
