@@ -1,11 +1,10 @@
 \chapter{Validation}
-\kim\\\\
 This chapter describes the model validation by playing back the use cases through sequence diagrams.
 \section{Use Case Realization}
 %Show how the system realizes the use cases selected in Sect. 4 using interaction diagrams. Show that each of the scenarios defined by the use cases is executed using the design of the system by providing sequence- or communication diagrams for each scenario. Choose the appropriate type of interaction diagram for a scenario.
 We've performed the use case realization using sequence diagrams depicting the required interaction between system components.
 \subsection{Cashier launching a toll cash lane}
-Figure \ref{fig:seq_diag:launches_a_toll_cash_lane} depicts the system view of performing Use Case 7 - Cashier launching a toll cash lane. Credentials needs to be input via the touch screen, but are not defined further. This could be implemented as a simple button with the label ``login cashier'', but is abstracted away from this system design. Credentials can, as part of the design be rejected or accepted to be able to implement more sophisticated authentication mechanism at a later point.
+Figure \ref{fig:seq_diag:launches_a_toll_cash_lane} depicts the system view of performing Use Case 7 - Cashier launching a toll cash lane. Credentials need to be input via the touch screen, but are not defined further. This could be implemented as a simple button with the label ``login cashier'', but is abstracted away from in the system design. Credentials can, as part of the design be rejected or accepted to be able to implement more sophisticated authentication mechanism at a later time.
 \begin{figure} % Realizes UC 7
   \includegraphics[scale=0.78]{\imgdir "Cashier enters toll cash lane"}
   \caption{Sequence diagram of realizing a cashier launches a toll cash lane}
@@ -13,7 +12,7 @@ Figure \ref{fig:seq_diag:launches_a_toll_cash_lane} depicts the system view of p
 \end{figure}
 
 \subsection{Toll Tag purchase}
-Figure \ref{fig:seq_diag:customer_orders_toll_tag_online} depicts the system view of performing Use Case 6 - Toll Tag purchase. We provide an interface for placing a checkout order by the webserver that can be used by a web application. Whenever this is called, it is forwarded to the Toll Enterprise server that will check the validity of the credit card credentials via the bank. If this step succeeds, we create a subscription. We propagate this subscription to every station in the enterprise to reduce the latency of toll tag check-in, as per design decision discussed in section \ref{sec:TODO:subscription}.
+Figure \ref{fig:seq_diag:customer_orders_toll_tag_online} depicts the system view of performing Use Case 6 - Toll Tag purchase. We provide an interface for placing a checkout order by the webserver that can be used by a web application. Whenever this is called, it is forwarded to the Toll Enterprise server, that will check the validity of the credit card credentials via the bank. If this step succeeds, a subscription is created. The subscription is propagated to every station in the enterprise to reduce the latency of toll tag check-in, as per design decision discussed in section \ref{sec:TODO:subscription}.
 %TODO make reference to design section about why we propagate the information.
 \begin{figure} % Realizes UC 6
   \includegraphics[scale=0.4]{\imgdir "Customer buy toll tag"}
@@ -22,8 +21,8 @@ Figure \ref{fig:seq_diag:customer_orders_toll_tag_online} depicts the system vie
 \end{figure}
 
 \subsection{Customer check-in single ticket}
-The realization in figure \ref{fig:seq_diag:customer_check_in_single_ticket} covers four use cases; Use Case 1, 2, 4 and 8. It depicts ``happy path'' with the single exception of ticket validation which needs to be performed at checkout. If the ticket is not valid or read correctly, the barrier will simply remain down, and a cashier needs to manually resolve the situation.
-%TODO add something about ticket being physical non-reusable paper tickets.
+The realization in figure \ref{fig:seq_diag:customer_check_in_single_ticket} covers four use cases; Use Case 1, 2, 4 and 8. It depicts ``happy path'' with the single exception of ticket validation, which needs to be performed at checkout. If the ticket is not valid or read correctly, the barrier will simply remain down, and a cashier needs to manually resolve the situation.
+It is assumed that tickets are non-reusable, meaning that once a ticket has been inserted into the reader at the check out, it is not given back to the customer. This prevents situations in which it can be attempted to use a ticket multiple times at a check out.
 \begin{figure}% Realizes UC 1 2 4 8
   \includegraphics[scale=0.37]{\imgdir "Customer Check-in single ticket"}
   \caption{Sequence diagram of the scenario where a customer buys a ticket from a cashier}
@@ -39,7 +38,7 @@ Figure \ref{fig:seq_diag:customer_check_in_toll_tag} depicts a scenario where a 
 \end{figure}
 
 \subsection{Enterprise manager changes toll rates}
-Figure \ref{fig:seq_diag:enterprise_manager_changes_toll_rates} depicts a manager actor operating the management client, changing the toll rates. The key implementation feature to be aware of here is that a toll rate change, it should be for the entire enterprise following requirement \textbf{RQ27} (section \ref{sec:requirements}). It realizes Use Case 13.
+Figure \ref{fig:seq_diag:enterprise_manager_changes_toll_rates} depicts a manager actor operating the management client, changing the toll rates. The key matter to be aware of here is that a toll rate change must be applied consistently to all stations in the enterprise, per requirement \textbf{RQ27} (section \ref{sec:requirements}). It realizes Use Case 13.
 \begin{figure} % Realizes UC 13
   \includegraphics[scale=0.65]{\imgdir "Enterprise manager changes toll rates"}
   \caption{Sequence diagram of the scenario where an enterprise manager changes toll rates}
@@ -47,7 +46,7 @@ Figure \ref{fig:seq_diag:enterprise_manager_changes_toll_rates} depicts a manage
 \end{figure}
 
 \subsection{Station manager generate report}
-Figure \ref{fig:seq_diag:station_manager_generate_report} depict the scenario where a station manager generates a station report. It will contact the cash registers of every toll lane and retrieve the tickets sold, check-ins and check-outs. The actual report format is implementation specific and can be easily constructed using the information returned to station client. It realizes Use Case 11.
+Figure \ref{fig:seq_diag:station_manager_generate_report} depicts the scenario where a station manager generates a station report. It will contact the cash registers of every toll lane and retrieve the tickets sold, check-ins and check-outs. The actual report format is implementation specific and can be easily constructed using the information returned to station client. It realizes Use Case 11.
 \begin{figure} % Realizes UC 11
   \includegraphics[scale=0.65]{\imgdir "Toll Station generate report"}
   \caption{Sequence diagram of the scenario where an toll station manager generates report}
@@ -55,7 +54,7 @@ Figure \ref{fig:seq_diag:station_manager_generate_report} depict the scenario wh
 \end{figure}
 
 \subsection{Enterprise manager generates report}
-Figure \ref{fig:seq_diag:station_manager_generate_report} depict the scenario where an enterprise manager generates a enterprise report. To perform this, we re-use the functionality from station report generation (see \ref{fig:seq_diag:station_manager_generate_report}) and merge all the reports from the stations. It realizes Use Case 15.
+Figure \ref{fig:seq_diag:station_manager_generate_report} depicts the scenario where an enterprise manager generates an enterprise report. To perform this, the functionality from station report generation is reused (see \ref{fig:seq_diag:station_manager_generate_report}) and subsequently a merge (or possibly a summary - implementation specific) of all the reports from the stations is made. It realizes Use Case 15.
 \begin{figure}% Realizes UC 15
   \includegraphics[scale=0.65]{\imgdir "Enterprise manager generates report"}
   \caption{Sequence diagram of the scenario where an enterprise manager generates report}
@@ -63,7 +62,7 @@ Figure \ref{fig:seq_diag:station_manager_generate_report} depict the scenario wh
 \end{figure}
 
 \subsection{Notify customers}
-Figure \ref{fig:seq_diag:notify_customers} depict the scenario where an enterprise manager has to notify customers of -- for instance -- pricing updates. The interface is defined on the enterprise server, but is left as implementation-specific for the actual delivery,  as this needs to be (for regular mail) has to be mapped to manual business process.
+Figure \ref{fig:seq_diag:notify_customers} depict the scenario where an enterprise manager has to notify customers of -- for instance -- pricing updates. The interface is defined on the enterprise server, but is left as implementation-specific for the actual delivery, as this needs to be (for regular mail) mapped to manual business process.
 \begin{figure}% Realizes UC 14
   \includegraphics[scale=0.65]{\imgdir "Notify customers"}
   \caption{Sequence diagram of the scenario where an enterprise manager generates report}
@@ -71,7 +70,7 @@ Figure \ref{fig:seq_diag:notify_customers} depict the scenario where an enterpri
 \end{figure}
 
 \subsection{System charges customers}
-While not mapped to a use case, we have identified ``System charges customers'' (figure \ref{fig:seq_diag:system_charges_customers}) as a requirement. The system periodically charges the toll tag customers, exploiting the previously defined interface for harvesting reports. This is because reports contain check-ins, check-outs and number of tickets sold -- which is the information we need.\\\\
+While not mapped to a use case, we have identified ``System charges customers'' (figure \ref{fig:seq_diag:system_charges_customers}) as a requirement. The system periodically charges the toll tag customers, exploiting the previously defined interface for harvesting reports. This is because reports contain check-ins, check-outs and number of tickets sold -- which is the information needed.\\\\
 The propagation of cancel() to station servers is intentionally left out to reduce diagram congestion and size.
 \begin{figure}
   \includegraphics[scale=0.65]{\imgdir "System charges customers"}
