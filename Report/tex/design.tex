@@ -1,5 +1,6 @@
 \chapter{Design}
 \anna \piotr \kim \\\\
+\label{sec:design}
 %This section contains the design of the system. It is only necessary to create a design realizing the use cases identified in Sect. 4. Explain any non-trivial design decision that you make, and state any assumptions that you make. 2
 \noindent
 The system is distributed in nature, and we have therefore designed our components with this in mind.\\\\
@@ -110,6 +111,7 @@ A ticket start its life, waiting to be checked in. It is then tagged with it's e
 \end{figure}
 
 \subsection{Ticket reader protocol}
+The ticket reader protocol is a synchronous protocol that will return the expiry status of a ticket by reading the issue date of the ticket and checking if has not passed the maximum allowed timespan.The PSM can be seen in figure \ref{fig:lsm:ticket_reader}.
 \begin{figure}
   \centering
   \includegraphics[scale=0.8]{\imgdir "Ticket Reader"}
@@ -117,26 +119,29 @@ A ticket start its life, waiting to be checked in. It is then tagged with it's e
   \label{fig:lsm:ticket_reader}
 \end{figure}
 
-\subsection{Enterprise Client protocol}
+\subsection{Enterprise Client port}
+The enterprise client port is a synchronous protocol that has different options. These each delegate to the enterprise client class (ec). For instance, if you call the changeRate method, and provide the vehicleType to be changed, the new rate and the type of rate you want to change (either toll tag or ticket), it will delegate to the appropriate method in Enterprise Client. The PSM can be seen in figure \ref{fig:psm:enterprise_client}.
 \begin{figure}
   \centering
   \includegraphics[scale=0.8]{\imgdir "Enterprise Client"}
   \caption{Protocol state machine for Enterprise Client}
-  \label{fig:lsm:enterprise_client}
+  \label{fig:psm:enterprise_client}
 \end{figure}
 
 \subsection{Cash register protocol}
+The cash register is considered a central component in our system, and an partial state machine depicting its protocol can be seen in figure \ref{fig:psm:cash_register}. It has protocol options to enable a cashier (after authenticating) to sell ticket by cash or credit card. He can also manually open the barrier (which is connected to cash register) in case of a manual checkout of a customer. This meant for the cases where the customer for some reason cannot checkout themselves.
 \begin{figure}
   \centering
   \includegraphics[scale=0.5]{\imgdir "Cash Register"}
   \caption{Protocol state machine for Cash Register}
-  \label{fig:lsm:cash_register}
+  \label{fig:psm:cash_register}
 \end{figure}
 
 \subsection{Credit card reader to bank protocol}
+The protocol for bank -- as seen by the credit card, shown in figure \ref{fig:psm:ccr_to_bank}, has 
 \begin{figure}
   \centering
   \includegraphics[scale=0.8]{\imgdir "BankToCreditCardReader"}
   \caption{Protocol state machine for Bank (for the credit card reader)}
-  \label{fig:lsm:ccr_to_bank}
+  \label{fig:psm:ccr_to_bank}
 \end{figure}
