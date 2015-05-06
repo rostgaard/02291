@@ -138,7 +138,7 @@ The cash register is considered a central component in our system, and an partia
 \end{figure}
 
 \subsection{Credit card reader to bank protocol}
-The protocol for bank -- as seen by the credit card, shown in figure \ref{fig:psm:ccr_to_bank}, has 
+The protocol for bank -- as seen by the credit card, shown in figure \ref{fig:psm:ccr_to_bank}, is a synchronous protocol that automatically forwards the request it get to next state. This way, the validation and withdrawal is a single operation for the client.
 \begin{figure}
   \centering
   \includegraphics[scale=0.8]{\imgdir "BankToCreditCardReader"}
