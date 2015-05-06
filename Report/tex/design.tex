@@ -71,7 +71,7 @@ The classes has following interactions and contracts:
 \end{description}
 
 \subsection{OCL constrains}
-The diagrams \ref{fig:dcd1} to \ref{fig:dcd_ec} include OCL constraints. The OCL presented are only the none-trivial ones. 
+The diagrams \ref{fig:dcd1} to \ref{fig:dcd_ec} include OCL constraints. The OCL presented are only the none-trivial ones. For example, some physical limitations of the real system are reflected in the OCL - the barrier can only be closed if it is opened the cash balance in the register can never be negative and the report has to be order for the feasible period of time. Those OCLs form a basis for future unit and integration tests, ensuring that they always hold during project development. In the chosen, port-based design it was quite hard to capture the OCLs which refer to more complex relations between objects, and the domain model capturing those relations had to be stripped from attributes to ensure readability. Still, some direct constraints on the methods could be captured, e.g. that it is only possible to manually check out the toll tag if it was checked in beforehand.
 \begin{figure}
   \centering
   \includegraphics[scale=0.5]{\imgdir "cash_register_dcd"}
