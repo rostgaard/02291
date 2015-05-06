@@ -2,9 +2,9 @@
 %This section contains the design of the system. It is only necessary to create a design realizing the use cases identified in Sect. 4. Explain any non-trivial design decision that you make, and state any assumptions that you make. 2
 \noindent
 The system is distributed in nature, and we have therefore designed our components with this in mind.\\\\
-The most important design decision that we made was that we decided to distributed the toll tag subscriptions to every toll station. This was done to keep toll tag check-in latency low, and because of log lifetime of a subscription.\\
+The most important design decision that we made was that we decided to distributed the toll tag subscriptions to every toll station. This was done to keep toll tag check-in latency low, and because of long lifetime of a subscription.\\
 The alternative of keeping a transaction object -- a trip -- (which completes upon check-out) in the enterprise, could potentially lead to very long answer times. And in case of a failure in the enterprise server will bring down every toll station.\\\\
-Toll tag subscriptions, once created, will be distributed to every station and will be there until explicitly canceled (either by the customer, or by a credit card payment decline). The main motivation for this is that a toll tag subscription, once initially created, will have a lifetime of at least one month.
+Toll tag subscriptions, once created, will be distributed to every station and will be there until explicitly cancelled (either by the customer, or by a credit card payment decline). The main motivation for this is that a toll tag subscription, once initially created, will have a lifetime of at least one month.
 \section{Component Design}
 %Define the components of the system with their ports (i.e., a port is a set of required and provided   interfaces). For each provided interfacze of a port provide the protocol state machine. For hardware components that one would buy off the shelf, like antenna, ticket reader, barrier, . . . , it is sufficient to provide the ports with their protocol state machines without going into the details of their possible implementation.
 
@@ -70,7 +70,7 @@ The classes has following interactions and contracts:
 \end{description}
 
 \subsection{OCL constrains}
-
+The diagrams \ref{fig:dcd1} to \ref{fig:dcd_ec} include OCL constrains. The OCL presented are only the none-trivial one. 
 \begin{figure}
   \centering
   \includegraphics[scale=0.5]{\imgdir "cash_register_dcd"}
