@@ -4,7 +4,14 @@
 
 \section{Component Design}
 %Define the components of the system with their ports (i.e., a port is a set of required and provided   interfaces). For each provided interface of a port provide the protocol state machine. For hardware components that one would buy off the shelf, like antenna, ticket reader, barrier, . . . , it is sufficient to provide the ports with their protocol state machines without going into the details of their possible implementation.
-The component architecture is based on three main components and four helpers. 
+
+\begin{figure}
+  \includegraphics[scale=0.37]{\imgdir "System"}
+  \caption{Component diagram}
+  \label{fig:component_diagram}
+\end{figure}
+
+The component architecture is based on three main components and three helpers. 
 The main components are:
 \begin{itemize}
 \item \textbf{Toll Lane} - this subsystem encapsulates Toll Booth component, which heart is the Cash Register. It provides or requires interfaces from all of the hardware located in or around the booth, like Credit Card Reader, Ticket Printer or Antenna. It communicates with the Toll Station Server by bidirectional interface, which allows to exchange information like current price or checked tickets and tags.
@@ -14,19 +21,14 @@ The main components are:
 The helpers are:
 \begin{itemize}
 \item \textbf{Bank} - this component not implemented by our application. It offers interfaces for Credit Card Reader and Enterprise for processing credit card payments. It also provides the system with physical credit card reader devices.
-\item \textbf{Report Generator} - this helper is separate component that process the data from Enterprise and provides the managers with styled and formatted reports. It uses the interface from Enterprise to fetch the data and another one from Report Printer to print the report. Its interface is available for all kinds of clients.
 \item \textbf{Management Client} - it allows Enterprise Managers to change the prices, send notification for customers or generate reports. It communicates with Enterprise Server and Report Generator. 
 \item \textbf{Webserver} - this component is hosting the website for customers for ordering and managing their toll tags. It uses Enterprise interfaces to inform about new toll tags requests. 
 \end{itemize}
 
-\begin{figure}
-  \includegraphics[scale=0.37]{\imgdir "System"}
-  \caption{Component diagram}
-  \label{fig:component_diagram}
-\end{figure}
 
 \section{Class Design}
 %Define the classes used to implement the components. Some components can be implemented as a single classes; other components can be implemented by a set of classes. Provide any necessary class invariants using OCL constraints. Specify the contracts of non-trivial operations using OCL constraints (pre:/post:). Describe each class, their interaction, and the contract of operations also using informal text. Note that for hardware components that one would buy off the shelf, like antenna, ticket reader, barrier, ... , it is not necessary to detail their implementation (cf. Sect. 4).
+
 
 \section{Behaviour Design}
 %Describe the behaviour of each non-trivial class using object life cycle state machines.
