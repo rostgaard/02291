@@ -1,5 +1,6 @@
 \chapter{Requirements}
 \noindent
+This chapter provides a detailed view of the system requirements.
 
 \section{Domain Analysis}
 %From PD. Keep in mind while writing.
@@ -25,8 +26,6 @@ The figure below shows a model of the system domain.
   \item[Toll Lane] a path on the Entry on which the Customer (one at the time) can enter the Motorway. It has a Computer.
   \item[Toll Station:] A place where the Station Manager resides and overseers the Toll Lanes
   \item[Toll System:] The infrastructure for managing the Motorway, used by Cashiers, Managers and Customers, also called Enterprise.
-
-
 \end{description}
 \subsubsection{Payment \& Ticket terminology}
 \begin{description}
@@ -76,7 +75,7 @@ The figure below shows a model of the system domain.
   \item[Subscription] Agreement between a toll tag customer and the toll enterprise to enable the toll enterprise to make recurring withdrawals based on toll tag usage.
 \end{description}
 
-\section{Actors}
+\subsection{Actors}
 Actors and their capabilities.
 \begin{itemize}
 \item Cashier
@@ -116,9 +115,13 @@ Actors and their capabilities.
 \end{itemize}
 \end{itemize}
 
-\subsection{Activity diagrams of the basic workflow}
-\begin{figure}
+\subsection{Activity diagram}
+The figure below shows the basic activity workflow in the system.
+\begin{figure}[H]
+\includegraphics[scale=0.35]{\imgdir "Activity diagram"}
+\centering
 \caption{Activity Diagram of the Basic Workflow}
+\label{fig:activity_diagram}
 \end{figure}
 
 \section{Use cases} \martin \pawel \\
