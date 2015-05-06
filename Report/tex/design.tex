@@ -2,9 +2,9 @@
 %This section contains the design of the system. It is only necessary to create a design realizing the use cases identified in Sect. 4. Explain any non-trivial design decision that you make, and state any assumptions that you make. 2
 \noindent
 The system is distributed in nature, and we have therefore designed our components with this in mind.\\\\
-The most important design decision that we made was that we decided to distributed the toll tag subscriptions to every toll station. This was done to keep toll tag check-in latency low, and because of long lifetime of a subscription.\\
+The most important design decision that we made was that we decided to distributed the toll tag subscriptions to every toll station. This was done to keep toll tag check-in latency low, and because of log lifetime of a subscription.\\
 The alternative of keeping a transaction object -- a trip -- (which completes upon check-out) in the enterprise, could potentially lead to very long answer times. And in case of a failure in the enterprise server will bring down every toll station.\\\\
-Toll tag subscriptions, once created, will be distributed to every station and will be there until explicitly cancelled (either by the customer, or by a credit card payment decline). The main motivation for this is that a toll tag subscription, once initially created, will have a lifetime of at least one month.
+Toll tag subscriptions, once created, will be distributed to every station and will be there until explicitly canceled (either by the customer, or by a credit card payment decline). The main motivation for this is that a toll tag subscription, once initially created, will have a lifetime of at least one month.
 \section{Component Design}
 %Define the components of the system with their ports (i.e., a port is a set of required and provided   interfaces). For each provided interfacze of a port provide the protocol state machine. For hardware components that one would buy off the shelf, like antenna, ticket reader, barrier, . . . , it is sufficient to provide the ports with their protocol state machines without going into the details of their possible implementation.
 
@@ -28,7 +28,6 @@ The helpers are:
 \item \textbf{Management Client} - it allows Enterprise Managers to change the prices, send notification for customers or generate reports. It communicates with Enterprise Server and Report Generator. 
 \item \textbf{Webserver} - this component is hosting the website for customers for ordering and managing their toll tags. It uses Enterprise interfaces to inform about new toll tags requests. 
 \end{itemize}
-
 
 \section{Class Design}
 %Define the classes used to implement the components. Some components can be implemented as a single classes; other components can be implemented by a set of classes. Provide any necessary class invariants using OCL constraints. Specify the contracts of non-trivial operations using OCL constraints (pre:/post:). Describe each class, their interaction, and the contract of operations also using informal text. Note that for hardware components that one would buy off the shelf, like antenna, ticket reader, barrier, ... , it is not necessary to detail their implementation (cf. Sect. 4).
@@ -70,7 +69,7 @@ The classes has following interactions and contracts:
 \end{description}
 
 \subsection{OCL constrains}
-The diagrams \ref{fig:dcd1} to \ref{fig:dcd_ec} include OCL constrains. The OCL presented are only the none-trivial one. 
+
 \begin{figure}
   \centering
   \includegraphics[scale=0.5]{\imgdir "cash_register_dcd"}
@@ -88,4 +87,54 @@ The diagrams \ref{fig:dcd1} to \ref{fig:dcd_ec} include OCL constrains. The OCL 
 \end{figure}
 
 \section{Behaviour Design}
-%Describe the behaviour of each non-trivial class using object life cycle state machines.
+This section models the behavior and life-cycle of selected models.
+
+\subsection{Subscription life-cycle}
+A subscription stats its life by being verified by the bank. This operation could potentially be skipped as it is implicitly checked by the business process. In the toll tag acquisition process, an initial fee is to be paid for obtaining the toll tag and this, implicitly, gives a verification that the credit card has coverage.\\
+The Subscription objects lives for as long as it is not explicitly canceled. This can happen when either the customer cancels it manually (which is not modeled, nor verified in our system) or, when the associated credit card no longer has credit coverage to pay for the trips taking using the associated toll tag. Once destroyed, it must be removed from every toll station as also stated in the note in figure \ref{fig:lsm:subscription}.
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.8]{\imgdir "Subscription"}
+  \caption{Life-cycle state machine for Subscription}
+  \label{fig:lsm:subscription}
+\end{figure}
+
+\subsection{Ticket life-cycle}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.8]{\imgdir "Ticket"}
+  \caption{Life-cycle state machine for Ticket}
+  \label{fig:lsm:ticket}
+\end{figure}
+
+\subsection{Ticket reader protocol}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.8]{\imgdir "Ticket Reader"}
+  \caption{Protocol state machine for Ticket Reader}
+  \label{fig:lsm:ticket_reader}
+\end{figure}
+
+\subsection{Enterprise Client protocol}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.8]{\imgdir "Enterprise Client"}
+  \caption{Protocol state machine for Enterprise Client}
+  \label{fig:lsm:enterprise_client}
+\end{figure}
+
+\subsection{Cash register protocol}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.8]{\imgdir "Cash Register"}
+  \caption{Protocol state machine for Cash Register}
+  \label{fig:lsm:cash_register}
+\end{figure}
+
+\subsection{Credit card reader to bank protocol}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.8]{\imgdir "BankToCreditCardReader"}
+  \caption{Protocol state machine for Bank (for the credit card reader)}
+  \label{fig:lsm:ccr_to_bank}
+\end{figure}
