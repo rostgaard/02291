@@ -13,8 +13,7 @@ Figure \ref{fig:seq_diag:launches_a_toll_cash_lane} depicts the system view of p
 \end{figure}
 
 \subsection{Toll Tag purchase}
-Figure \ref{fig:seq_diag:customer_orders_toll_tag_online} depicts the system view of performing Use Case 6 - Toll Tag purchase. We provide an interface for placing a checkout order by the webserver that can be used by a web application. Whenever this is called, it is forwarded to the Toll Enterprise server, that will check the validity of the credit card credentials via the bank. If this step succeeds, a subscription is created. The subscription is propagated to every station in the enterprise to reduce the latency of toll tag check-in, as per design decision discussed in section \ref{sec:TODO:subscription}.
-%TODO make reference to design section about why we propagate the information.
+Figure \ref{fig:seq_diag:customer_orders_toll_tag_online} depicts the system view of performing Use Case 6 - Toll Tag purchase. We provide an interface for placing a checkout order by the webserver that can be used by a web application. Whenever this is called, it is forwarded to the Toll Enterprise server, that will check the validity of the credit card credentials via the bank. If this step succeeds, a subscription is created. The subscription is propagated to every station in the enterprise to reduce the latency of toll tag check-in, as per design decision discussed in section \ref{sec:design}.
 \begin{figure} % Realizes UC 6
   \includegraphics[scale=0.4]{\imgdir "Customer buy toll tag"}
   \caption{Sequence diagram of the scenario of a customer buying a toll tag on-line}
@@ -41,7 +40,7 @@ Figure \ref{fig:seq_diag:customer_check_in_toll_tag} depicts a scenario where a 
 \subsection{Enterprise manager changes toll rates}
 Figure \ref{fig:seq_diag:enterprise_manager_changes_toll_rates} depicts a manager actor operating the management client, changing the toll rates. The key matter to be aware of here is that a toll rate change must be applied consistently to all stations in the enterprise, per requirement \textbf{RQ27} (section \ref{sec:requirements}). It realizes Use Case 13.
 \begin{figure} % Realizes UC 13
-  \includegraphics[scale=0.65]{\imgdir "Enterprise manager changes toll rates"}
+  \includegraphics[scale=0.55]{\imgdir "Enterprise manager changes toll rates"}
   \caption{Sequence diagram of the scenario where an enterprise manager changes toll rates}
   \label{fig:seq_diag:enterprise_manager_changes_toll_rates}
 \end{figure}
@@ -80,4 +79,4 @@ The propagation of cancel() to station servers is intentionally left out to redu
 \end{figure}
 
 \subsection{Remaining use cases}
-The use cases 9, 10 and 12 are considered too trivial to perform use case realization on.
+The use cases 9, 10 and 12 were considered too trivial to perform use case realization on.
