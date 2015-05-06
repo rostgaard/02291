@@ -1,6 +1,8 @@
 \chapter{Validation}
-\section{Use Case Realisation}
+This chapter describes the model validation by playing back the use cases through sequence diagrams and acceptance tests from FIT tables.
+\section{Use Case Realization}
 %Show how the system realizes the use cases selected in Sect. 4 using interaction diagrams. Show that each of the scenarios defined by the use cases is executed using the design of the system by providing sequence- or communication diagrams for each scenario. Choose the appropriate type of interaction diagram for a scenario.
+The figure \ref{fig:seq_diag:system_charges_customers}
 
 
 \begin{figure}
@@ -22,14 +24,28 @@
 \end{figure}
 
 \begin{figure}
-  \includegraphics[scale=0.37]{\imgdir "Customer check-in toll tag"}
+  \includegraphics[scale=0.65]{\imgdir "Customer check-in toll tag"}
   \caption{Sequence diagram of the scenario where a customer checks in using a toll tag}
   \label{fig:seq_diag:customer_check_in_toll_tag}
 \end{figure}
 
-Enterprise manager changes toll rates
-Enterprise manager generates report
-Toll Station generate report
+\begin{figure}
+  \includegraphics[scale=0.65]{\imgdir "Enterprise manager changes toll rates"}
+  \caption{Sequence diagram of the scenario where an enterprise manager changes toll rates}
+  \label{fig:seq_diag:enterprise_manager_changes_toll_rates}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[scale=0.65]{\imgdir "Enterprise manager generates report"}
+  \caption{Sequence diagram of the scenario where an enterprise manager generates report}
+  \label{fig:seq_diag:enterprise_manager_generate_report}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[scale=0.65]{\imgdir "Toll Station generate report"}
+  \caption{Sequence diagram of the scenario where an toll station manager generates report}
+  \label{fig:seq_diag:enterprise_manager_generate_report}
+\end{figure}
 
 \begin{figure}
   \includegraphics[scale=0.65]{\imgdir "System charges customers"}
@@ -37,3 +53,6 @@ Toll Station generate report
   \label{fig:seq_diag:system_charges_customers}
 \end{figure}
 The propagation of cancel() in figure \ref{fig:seq_diag:system_charges_customers} to station servers is intentionally left out to enhance readability of the diagram.
+
+\section{Acceptance tests}
+%TODO Insert FIT tables.
