@@ -28,6 +28,13 @@ The helpers are:
 
 \section{Class Design}
 %Define the classes used to implement the components. Some components can be implemented as a single classes; other components can be implemented by a set of classes. Provide any necessary class invariants using OCL constraints. Specify the contracts of non-trivial operations using OCL constraints (pre:/post:). Describe each class, their interaction, and the contract of operations also using informal text. Note that for hardware components that one would buy off the shelf, like antenna, ticket reader, barrier, ... , it is not necessary to detail their implementation (cf. Sect. 4).
+The detailed class design includes all the interfaces introduced in component diagram and most of the concepts presented in the domain model. 
+The classes has following interactions and contracts:
+\begin{itemize}
+\item Antenna - it's a hardware device, that is contacting the Cash Register to inform about toll tag that it registered
+\item Barrier - it's a hardware device, that provides the interface for Cash Register for opening/closing.
+\item
+\end{itemize}
 
 
 \section{Behaviour Design}

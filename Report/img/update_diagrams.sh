@@ -29,3 +29,7 @@ echo Built System charges customers.pdf
 
 inkscape -z Toll\ Station\ generate\ report.svg --export-pdf=Toll\ Station\ generate\ report.pdf
 echo Built Toll Station generate report.pdf
+
+inkscape -z Notify\ customers.svg --export-pdf=Notify\ customers.pdf
+echo Built Notify customers.pdf
+
