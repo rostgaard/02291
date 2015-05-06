@@ -31,7 +31,7 @@ The realization in figure \ref{fig:seq_diag:customer_check_in_single_ticket} cov
 \end{figure}
 
 \subsection{Customer check-in toll tag}
-Figure \ref{fig:seq_diag:customer_check_in_toll_tag} depicts a scenario where a customer with an existing toll tag checks into the system. Check-out mirrors check-in and is, thus, not depicted.
+Figure \ref{fig:seq_diag:customer_check_in_toll_tag} depicts a scenario where a customer with an existing toll tag checks into the system. Check-out mirrors check-in and is, thus, not depicted. It realizes Use Case 3 and 5.
 \begin{figure} % Realizes UC 3 5
   \includegraphics[scale=0.65]{\imgdir "Customer check-in toll tag"}
   \caption{Sequence diagram of the scenario where a customer checks in using a toll tag}
@@ -39,7 +39,7 @@ Figure \ref{fig:seq_diag:customer_check_in_toll_tag} depicts a scenario where a 
 \end{figure}
 
 \subsection{Enterprise manager changes toll rates}
-Figure \ref{fig:seq_diag:enterprise_manager_changes_toll_rates} depicts a manager actor operating the management client, changing the toll rates. The key implementation feature to be aware of here is that a toll rate change, it should be for the entire enterprise following requirement \textbf{RQ27} (section \ref{sec:requirements}).
+Figure \ref{fig:seq_diag:enterprise_manager_changes_toll_rates} depicts a manager actor operating the management client, changing the toll rates. The key implementation feature to be aware of here is that a toll rate change, it should be for the entire enterprise following requirement \textbf{RQ27} (section \ref{sec:requirements}). It realizes Use Case 13.
 \begin{figure} % Realizes UC 13
   \includegraphics[scale=0.65]{\imgdir "Enterprise manager changes toll rates"}
   \caption{Sequence diagram of the scenario where an enterprise manager changes toll rates}
@@ -47,7 +47,7 @@ Figure \ref{fig:seq_diag:enterprise_manager_changes_toll_rates} depicts a manage
 \end{figure}
 
 \subsection{Station manager generate report}
-Figure \ref{fig:seq_diag:station_manager_generate_report} depict the scenario where a station manager generates a station report. It will contact the cash registers of every toll lane and retrieve the tickets sold, check-ins and check-outs. The actual report format is implementation specific and can be easily constructed using the information returned to station client.
+Figure \ref{fig:seq_diag:station_manager_generate_report} depict the scenario where a station manager generates a station report. It will contact the cash registers of every toll lane and retrieve the tickets sold, check-ins and check-outs. The actual report format is implementation specific and can be easily constructed using the information returned to station client. It realizes Use Case 11.
 \begin{figure} % Realizes UC 11
   \includegraphics[scale=0.65]{\imgdir "Toll Station generate report"}
   \caption{Sequence diagram of the scenario where an toll station manager generates report}
@@ -55,11 +55,19 @@ Figure \ref{fig:seq_diag:station_manager_generate_report} depict the scenario wh
 \end{figure}
 
 \subsection{Enterprise manager generates report}
-Figure \ref{fig:seq_diag:station_manager_generate_report} depict the scenario where an enterprise manager generates a enterprise report. To perform this, we re-use the functionality from station report generation (see \ref{fig:seq_diag:station_manager_generate_report}) and merge all the reports from the stations.
+Figure \ref{fig:seq_diag:station_manager_generate_report} depict the scenario where an enterprise manager generates a enterprise report. To perform this, we re-use the functionality from station report generation (see \ref{fig:seq_diag:station_manager_generate_report}) and merge all the reports from the stations. It realizes Use Case 15.
 \begin{figure}% Realizes UC 15
   \includegraphics[scale=0.65]{\imgdir "Enterprise manager generates report"}
   \caption{Sequence diagram of the scenario where an enterprise manager generates report}
   \label{fig:seq_diag:enterprise_manager_generate_report}
+\end{figure}
+
+\subsection{Notify customers}
+Figure \ref{fig:seq_diag:notify_customers} depict the scenario where an enterprise manager has to notify customers of -- for instance -- pricing updates. The interface is defined on the enterprise server, but is left as implementation-specific for the actual delivery,  as this needs to be (for regular mail) has to be mapped to manual business process.
+\begin{figure}% Realizes UC 14
+  \includegraphics[scale=0.65]{\imgdir "Notify customers"}
+  \caption{Sequence diagram of the scenario where an enterprise manager generates report}
+  \label{fig:seq_diag:notify_customers}
 \end{figure}
 
 \subsection{System charges customers}
