@@ -100,6 +100,7 @@ The Subscription objects lives for as long as it is not explicitly canceled. Thi
 \end{figure}
 
 \subsection{Ticket life-cycle}
+A ticket start its life, waiting to be checked in. It is then tagged with it's expiry date, which for this system is defined to be 24 hours. The ticket expires when the expiry date has passed the current time, and this modeled in figure \ref{fig:lsm:ticket} as timed event. Once the ticket is invalid, it can no longer be checked out.
 \begin{figure}
   \centering
   \includegraphics[scale=0.8]{\imgdir "Ticket"}
@@ -126,7 +127,7 @@ The Subscription objects lives for as long as it is not explicitly canceled. Thi
 \subsection{Cash register protocol}
 \begin{figure}
   \centering
-  \includegraphics[scale=0.8]{\imgdir "Cash Register"}
+  \includegraphics[scale=0.5]{\imgdir "Cash Register"}
   \caption{Protocol state machine for Cash Register}
   \label{fig:lsm:cash_register}
 \end{figure}
