@@ -1,9 +1,19 @@
 \chapter{Requirements}
 \noindent
+This chapter provides a detailed view of the system requirements.
 
 \section{Domain Analysis}
 %From PD. Keep in mind while writing.
 %Create a glossary explaining the notions and terminologies discovered when analysing the domain of the toll system. Create a class diagram of the domain. Describe the basic workflows / business proceses of the toll system as activity diagrams.
+
+\subsection{Domain model}
+The figure below shows a model of the system domain.
+\begin{figure}[H]
+\includegraphics[scale=0.4]{\imgdir "Domain Model"}
+\caption{Domain model}
+\label{fig:domain_model}
+\end{figure}
+
 \subsection{Glossary}
 \subsubsection{Station-related terminology}
 \begin{description}
@@ -16,8 +26,6 @@
   \item[Toll Lane] a path on the Entry on which the Customer (one at the time) can enter the Motorway. It has a Computer.
   \item[Toll Station:] A place where the Station Manager resides and overseers the Toll Lanes
   \item[Toll System:] The infrastructure for managing the Motorway, used by Cashiers, Managers and Customers, also called Enterprise.
-
-
 \end{description}
 \subsubsection{Payment \& Ticket terminology}
 \begin{description}
@@ -67,7 +75,7 @@
   \item[Subscription] Agreement between a toll tag customer and the toll enterprise to enable the toll enterprise to make recurring withdrawals based on toll tag usage.
 \end{description}
 
-\section{Actors}
+\subsection{Actors}
 Actors and their capabilities.
 \begin{itemize}
 \item Cashier
@@ -107,15 +115,37 @@ Actors and their capabilities.
 \end{itemize}
 \end{itemize}
 
-%TODO: <SHORT TEXT>
-%TODO: <ACTIVITY DIAGRAM>
-
-\begin{figure}
-
+\subsection{Activity diagram}
+The figure below shows the basic activity workflow in the system.
+\begin{figure}[H]
+\includegraphics[scale=0.35]{\imgdir "Activity diagram"}
+\centering
 \caption{Activity Diagram of the Basic Workflow}
+\label{fig:activity_diagram}
 \end{figure}
 
 \section{Use cases} \martin \pawel \\
+This section contains use case diagrams and detailed use case descriptions.
+
+\subsection{Use case diagrams}
+\subsubsection{High level}
+The diagram below shows high level view of the use cases in the system. 
+\begin{figure}[H]
+\includegraphics[scale=0.35]{\imgdir "Use case high level"}
+\centering
+\caption{Use case diagram high level}
+\label{fig:use_case_high_level}
+\end{figure}
+
+\subsubsection{Detailed}
+The diagram below presents a more detailed view on the use cases in the system.
+\begin{figure}[H]
+\includegraphics[scale=0.35]{\imgdir "Use case low level"}
+\centering
+\caption{Use case diagram low level}
+\label{fig:use_case_low_level}
+\end{figure}
+
 \subsection{Customer point of view}
 \begin{usecase}
 \addtitle{Use Case 1}{Check-in on a normal, manned lane} 
@@ -584,10 +614,3 @@ The non-functional requirements describe how the system is supposed to be. Below
   \item[NRQ4] The fault rate of the wireless toll collection (with antennas and toll tags) shall be at most 1 vehicle per day per toll station.
   \item[NRQ5] Station and enterprise generation shall be fast. It shall take no longer than 30 seconds to generate and display a report.
 \end{description}
-
-
-\begin{figure}
-\includegraphics[scale=0.4]{\imgdir "Domain Model"}
-\caption{Domain model}
-\label{fig:domain_model}
-\end{figure}

@@ -4,6 +4,20 @@
 
 \section{Component Design}
 %Define the components of the system with their ports (i.e., a port is a set of required and provided   interfaces). For each provided interface of a port provide the protocol state machine. For hardware components that one would buy off the shelf, like antenna, ticket reader, barrier, . . . , it is sufficient to provide the ports with their protocol state machines without going into the details of their possible implementation.
+The component architecture is based on three main components and four helpers. 
+The main components are:
+\begin{itemize}
+\item \textbf{Toll Lane} - this subsystem encapsulates Toll Booth component, which heart is the Cash Register. It provides or requires interfaces from all of the hardware located in or around the booth, like Credit Card Reader, Ticket Printer or Antenna. It communicates with the Toll Station Server by bidirectional interface, which allows to exchange information like current price or checked tickets and tags.
+\item \textbf{Toll Station} - this subsystem consists of only two elements - the server, responsible for synchronizing with Enterprise Server and Cash Register, and the client, that is used by Manager to print reports or submitting the forms. The communication between servers provides Station Servers with informations, that are stored locally: current, registered subscriptions and prices, and allows for monthly synchronization of checks and sold tickets. 
+\item \textbf{Enterprise Server} - this component controls the flow of data. It collects the forms submitted by the Website. It provides the data for management client and accepts its request for price changing and notification sending. It is also responsible for calculating and processing the monthly payment for toll tags' owners.
+\end{itemize}
+The helpers are:
+\begin{itemize}
+\item \textbf{Bank} - this component not implemented by our application. It offers interfaces for Credit Card Reader and Enterprise for processing credit card payments. It also provides the system with physical credit card reader devices.
+\item \textbf{Report Generator} - this helper is separate component that process the data from Enterprise and provides the managers with styled and formatted reports. It uses the interface from Enterprise to fetch the data and another one from Report Printer to print the report. Its interface is available for all kinds of clients.
+\item \textbf{Management Client} - it allows Enterprise Managers to change the prices, send notification for customers or generate reports. It communicates with Enterprise Server and Report Generator. 
+\item \textbf{Webserver} - this component is hosting the website for customers for ordering and managing their toll tags. It uses Enterprise interfaces to inform about new toll tags requests. 
+\end{itemize}
 
 \begin{figure}
   \includegraphics[scale=0.37]{\imgdir "System"}
